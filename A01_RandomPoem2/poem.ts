@@ -1,4 +1,4 @@
-namespace RandomPoem2 {
+ namespace RandomPoem2 {
     let subjekte: string[] = ["Harry", "Hermine", "Ron", "Hagrid", "Snape", "Dumbledore" ];
     let praedikate: string[] = ["braut", "liebt", "studiert", "hasst", "zaubert", " zerstört" ];
     let objekte: string [] = ["Zaubertränke", "den Grimm", "Lupin", "Hogwarts", "die Karte des Rumtreibers", "Dementoren" ];
