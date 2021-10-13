@@ -5,8 +5,8 @@ var RandomPoem;
     let praedikate = ["braut", "liebt", "studiert", "hasst", "zaubert", " zerstört"];
     let objekte = ["Zaubertränke", "den Grimm", "Lupin", "Hogwarts", "die Karte des Rumtreibers", "Dementoren"];
     // console.log(subjekte, praedikate, objekte);
-    for (let index = 6 - 1; index >= 1; index--) {
-        //console.log(index);
+    for (let i = subjekte.length; i >= 1; i--) {
+        //console.log(i);
         let werteAusgeben = getVerse(subjekte, praedikate, objekte);
         console.log(werteAusgeben);
     }

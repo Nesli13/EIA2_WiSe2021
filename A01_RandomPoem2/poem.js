@@ -7,12 +7,12 @@ var RandomPoem2;
     //let nums: number[] = [1, 2, 3, 4, 5, 6];
     //let results: string [] = [];
     for (let i = subjekte.length; i >= 1; i--) {
-        let result = createCall(subjekte, praedikate, objekte);
+        let result = getVerse(subjekte, praedikate, objekte);
         //results.push(result);
         console.log(result);
     }
     //console.log(results);
-    function createCall(subjekte, praedikate, objekte) {
+    function getVerse(subjekte, praedikate, objekte) {
         let wert1 = Math.floor(Math.random() * subjekte.length);
         let wert2 = Math.floor(Math.random() * praedikate.length);
         let wert3 = Math.floor(Math.random() * objekte.length);
