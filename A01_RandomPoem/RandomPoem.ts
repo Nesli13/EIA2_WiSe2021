@@ -5,8 +5,8 @@ namespace RandomPoem {
    // console.log(subjekte, praedikate, objekte);
 
 
-    for (let index: number = 6 - 1; index >= 1 ; index--) {
-      //console.log(index);
+    for (let i: number = subjekte.length; i >= 1 ; i--) {
+      //console.log(i);
 
       let werteAusgeben: string = getVerse(subjekte, praedikate, objekte);
       console.log(werteAusgeben);
