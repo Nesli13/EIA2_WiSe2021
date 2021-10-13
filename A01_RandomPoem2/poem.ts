@@ -9,7 +9,7 @@
 
     for (let i: number = subjekte.length ; i >= 1 ; i--) {
       
-      let result: string = createCall (subjekte, praedikate, objekte);
+      let result: string = getVerse (subjekte, praedikate, objekte);
     
 
       //results.push(result);
@@ -18,7 +18,7 @@
     //console.log(results);
 
 
-    function createCall(subjekte: string[], praedikate: string[], objekte: string[]): string {
+    function getVerse(subjekte: string[], praedikate: string[], objekte: string[]): string {
         let wert1: number = Math.floor(Math.random() * subjekte.length);
         let wert2: number = Math.floor(Math.random() * praedikate.length);
         let wert3: number = Math.floor(Math.random() * objekte.length);
