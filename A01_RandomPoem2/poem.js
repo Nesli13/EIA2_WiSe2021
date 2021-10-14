@@ -5,13 +5,13 @@ var RandomPoem2;
     let praedikate = ["braut", "liebt", "studiert", "hasst", "zaubert", " zerstört"];
     let objekte = ["Zaubertränke", "den Grimm", "Lupin", "Hogwarts", "die Karte des Rumtreibers", "Dementoren"];
     //let nums: number[] = [1, 2, 3, 4, 5, 6];
-    //let results: string [] = [];
+    let results = [];
     for (let i = subjekte.length; i >= 1; i--) {
         let result = getVerse(subjekte, praedikate, objekte);
-        //results.push(result);
-        console.log(result);
+        results.push(result);
+        //console.log(result);
     }
-    //console.log(results);
+    console.log(results);
     function getVerse(subjekte, praedikate, objekte) {
         let wert1 = Math.floor(Math.random() * subjekte.length);
         let wert2 = Math.floor(Math.random() * praedikate.length);

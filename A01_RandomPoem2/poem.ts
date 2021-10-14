@@ -5,17 +5,17 @@
     
 
     //let nums: number[] = [1, 2, 3, 4, 5, 6];
-    //let results: string [] = [];
+    let results: string [] = [];
 
     for (let i: number = subjekte.length ; i >= 1 ; i--) {
       
       let result: string = getVerse (subjekte, praedikate, objekte);
     
 
-      //results.push(result);
-      console.log(result);
+      results.push(result);
+      //console.log(result);
     }
-    //console.log(results);
+    console.log(results);
 
 
     function getVerse(subjekte: string[], praedikate: string[], objekte: string[]): string {
