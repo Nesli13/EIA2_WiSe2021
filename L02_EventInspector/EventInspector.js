@@ -1,7 +1,7 @@
 "use strict";
 var L02_EventInspector;
 (function (L02_EventInspector) {
-    console.log("Start");
+    //console.log("Start");
     window.addEventListener("load", handleLoad);
     function handleLoad(_event) {
         let mouse0 = document.querySelector("#div0");
@@ -21,11 +21,14 @@ var L02_EventInspector;
         let y = _event.pageY;
         let mousePosition = document.querySelector("span");
         let mouse0 = _event.target;
-        mousePosition.innerHTML = "<br>" + mouse0 + "" + "<br>" + "x:" + x + "<br>" + "y:" + y;
+        mousePosition.innerHTML = "<br>" + "target: " + mouse0 + "" + "<br>" + "x: " + x + "<br>" + "y: " + y;
         mousePosition.style.left = x + 3 + "px";
-        mousePosition.style.top = y + 4 + "px";
+        mousePosition.style.top = y + 5 + "px";
     }
     function logInfo(_event) {
+        console.log(_event.target);
+        console.log(_event.currentTarget);
+        console.log(_event);
     }
 })(L02_EventInspector || (L02_EventInspector = {}));
 //# sourceMappingURL=EventInspector.js.map

@@ -1,5 +1,5 @@
 namespace L02_EventInspector {
-    console.log("Start");
+    //console.log("Start");
     window.addEventListener("load", handleLoad);
 
     function handleLoad(_event: Event): void {
@@ -29,15 +29,17 @@ namespace L02_EventInspector {
 
         let mousePosition: HTMLElement = <HTMLElement>document.querySelector("span");
         let mouse0: HTMLElement = <HTMLElement>_event.target;
-        mousePosition.innerHTML = "<br>" + mouse0 + "" + "<br>" + "x:" + x + "<br>" + "y:" + y;
+        mousePosition.innerHTML = "<br>" + "target: " + mouse0 + "" + "<br>" + "x: " + x + "<br>" + "y: " + y;
 
         mousePosition.style.left = x + 3 + "px";
-        mousePosition.style.top = y + 4 + "px";
+        mousePosition.style.top = y + 5 + "px";
 
 
     }
 
     function logInfo(_event: Event): void {
-
+        console.log(_event.target);
+        console.log(_event.currentTarget);
+        console.log(_event);
     }
 }
