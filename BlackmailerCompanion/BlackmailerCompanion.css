@@ -11,7 +11,7 @@ body {
 }
 
 div {
-    border: thin soldi black;
+    border: thin solid black;
     background-color: beige;
     position: relative;
     top: 0px;
@@ -20,6 +20,6 @@ div {
 
 span {
     font-size: 6em;
-    position: relative;
+    position: absolute;
     border: thin dotted black;
 }

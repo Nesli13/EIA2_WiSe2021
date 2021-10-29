@@ -1,0 +1,31 @@
+html,
+body {
+    height: 100%;
+    margin: 0 30px;
+}
+
+#div0 {
+    border: thin solid black;
+    background-color: rgb(222, 240, 248);
+    padding: 30px;
+    height: 70%;
+    width: 43%;
+    float: left;
+}
+
+#div1 {
+    border: thin solid black;
+    background-color: rgb(232, 248, 222);
+    padding: 30px;
+    height: 70%;
+    width: 43%;
+    float: right;
+}
+
+span {
+    position: fixed;
+    border: thin dotted black;
+    background-color: rgb(235, 215, 247);
+    width: 10%;
+    height: 10%;
+}

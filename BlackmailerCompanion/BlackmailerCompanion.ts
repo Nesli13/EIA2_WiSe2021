@@ -36,6 +36,6 @@ namespace L02_BlackmailerCompanion {
        let target: Node =  <Node> _event.target;
        let parent: Node =  <Node>target.parentNode;
        parent.removeChild(target);
-
+       
     }
 }
