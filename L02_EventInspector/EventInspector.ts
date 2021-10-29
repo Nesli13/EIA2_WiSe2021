@@ -29,7 +29,7 @@ namespace L02_EventInspector {
 
         let mousePosition: HTMLElement = <HTMLElement>document.querySelector("span");
         let mouse0: HTMLElement = <HTMLElement>_event.target;
-        mousePosition.innerHTML = "<br>" + "target: " + mouse0 + "" + "<br>" + "x: " + x + "<br>" + "y: " + y;
+        mousePosition.innerHTML = "target: " + mouse0 + "" + "<br>" + "x: " + x + "<br>" + "y: " + y;
 
         mousePosition.style.left = x + 3 + "px";
         mousePosition.style.top = y + 5 + "px";
