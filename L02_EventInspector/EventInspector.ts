@@ -5,6 +5,7 @@ namespace L02_EventInspector {
     function handleLoad(_event: Event): void {
         let mouse0: HTMLElement = <HTMLElement>document.querySelector("#div0");
         let mouse1: HTMLElement = <HTMLElement>document.querySelector("#div1");
+        //let button: HTMLElement = <HTMLElement>document.querySelector("#btn");
 
         mouse0.addEventListener("keyup", logInfo);
         mouse0.addEventListener("click", logInfo);
@@ -19,6 +20,9 @@ namespace L02_EventInspector {
 
         document.body.addEventListener("keyup", logInfo);
         document.body.addEventListener("click", logInfo);
+
+        /*button.addEventListener("click", clickBtn);
+        document.addEventListener("click", clickBtn);*/
 
 
     }
@@ -42,4 +46,10 @@ namespace L02_EventInspector {
         console.log(_event.currentTarget);
         console.log(_event);
     }
+
+    /*function clickBtn(_event: CustomEvent): void {
+        _event = new CustomEvent(clickBtn);
+
+
+    }*/
 }

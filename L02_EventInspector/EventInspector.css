@@ -29,3 +29,13 @@ span {
     width: 10%;
     height: 10%;
 }
+
+#btn {
+    width: 20%;
+    height: 5%;
+    border: thin dotted black;
+    background-color: rgb(222, 138, 135);
+    opacity: 0.8;
+    margin-left: 205%;
+    margin-top: 97%;
+}
