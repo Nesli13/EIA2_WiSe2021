@@ -14,6 +14,8 @@ var L02_EventInspector;
         document.addEventListener("mousemove", setInfoBox);
         document.addEventListener("keyup", logInfo);
         document.addEventListener("click", logInfo);
+        //document.addEventListener("click", myFunction);
+        //document.body.addEventListener("click", myFunction);
         document.body.addEventListener("keyup", logInfo);
         document.body.addEventListener("click", logInfo);
         /*button.addEventListener("click", clickBtn);
@@ -32,6 +34,13 @@ var L02_EventInspector;
         console.log(_event.target);
         console.log(_event.currentTarget);
         console.log(_event);
+    }
+    /*function myFunction(): void {
+        // tslint:disable-next-line: typedef
+        var input = prompt("Please write a message", "");
+
+        document.getElementById("demo").innerHTML = input;
+
     }
     /*function clickBtn(_event: CustomEvent): void {
         _event = new CustomEvent(clickBtn);
