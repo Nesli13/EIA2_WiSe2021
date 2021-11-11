@@ -1,0 +1,40 @@
+#form {
+    background-color: rgb(236, 197, 248);
+    border: 0px;
+    margin: auto;
+    width: 470px;
+}
+
+h1 {
+    color: blueviolet;
+    text-align: center;
+    font-family: cursive;
+    font-size: 35px;
+}
+
+p {
+    text-align: center;
+    font-family: cursive;
+    font-size: 22px;
+}
+
+fieldset {
+    width: auto;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#input {
+    color: rgb(164, 31, 226);
+}
+
+input[type="button"] {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 78px;
+    height: 35px;
+    border: black double;
+    font-size: medium;
+    background-color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}

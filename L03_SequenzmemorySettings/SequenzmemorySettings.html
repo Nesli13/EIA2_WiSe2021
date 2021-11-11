@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="SequenzmemorySettings.css " type="text/css" media="screen" />
+    <script src="SequenzmemorySettings.js" type="text/javascript" charset="utf-8"></script>
+    <title>SequenzmemorySettings</title>
+</head>
+
+<body>
+    <h1>Memory</h1>
+    <p>Memroy-Settings</p>
+    <div id="form">
+        <fieldset id="form">
+
+            Cards:
+            <input class="Cards" type="number" name="Cards" step="1" min="5" max="25" value="5" />
+            <br />
+
+            <hr>Cardsize:
+            <input class="Size" type="range" name="Size" min="100" max="200" step="10" value="100" />
+            <!-- wenn keine Eingabe stattfindet, wird der value genommen-->
+            <br />
+
+            <hr><br> Color:<br>
+            <input type="radio" name="Background" value="background" id="background" /> <label class="input" for="background">Background</label><input type="color" name="Color" step="0.1" min="-1" max="1" value="0">
+            <input type="radio" name="Background" value="card" id="card" /><label class="input" for="card">Cards</label><input type="color" name="Color" step="0.1" min="-1" max="1" value="0">
+            <input type="radio" name="Background" value="font" id="font" /><label class="input" for="font">Font</label><input type="color" name="Color" step="0.1" min="-1" max="1" value="0"><br>
+
+            <hr /> Fonts:<br>
+            <input type="radio" name="Font" value="arial" id="arial" />
+            <label for="arial">Arial</label>
+            <input type="radio" name="Font" value="helvetica" id="helvetica" />
+            <label for="helvetica">Helvetica</label>
+            <input type="radio" name="Font" value="calibri" id="calibri" />
+            <label for="calibri">Calibri</label>
+            <hr /> Time: <input class="Time" type="number" name="Time" step="1" min="1" max="5" value="1">
+            <hr>
+            <!---<input type="text" name="Text" placeholder="type here" required /><br>-->
+            <input type="button" name="input" value="Try it" id="input" />
+
+        </fieldset>
+    </div>
+    <div id="memory">
+
+    </div>
+</body>
+
+</html>
