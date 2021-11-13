@@ -72,28 +72,33 @@ var Sequenzmemory;
             console.log("Checked: " + target.name + " = " + target.checked);
     }
     function createGame(_event) {
-        gameField = document.createElement("div#memory");
-        gameField.style.backgroundColor = formData.get("background")?.toString();
-        let card = document.createElement("span");
-        card.innerHTML = _input;
-        card.classList.add("card");
-        card.classList.add("hidden");
-        choosenInputArray.push(card);
-        checkLastCard.push(card);
-        card.addEventListener("click", clickCards);
-        card.style.width = size + "px";
-        card.style.height = size + "px";
-        if (backgroundColor) {
-            card.style.backgroundColor = backgroundColor.toString();
-        }
-        if (cardColor) {
-            card.style.background = cardColor.toString();
-        }
-        if (fontColor) {
-            card.style.color = fontColor.toString();
-        }
-        if (font) {
-            card.style.fontFamily = font.toString();
+        for (let index = 0; index < choosenInputArray.length; index++) {
+            gameField = document.createElement("div");
+            gameField.style.backgroundColor = formData.get("background")?.toString();
+            let card = document.createElement("div");
+            card.className = "cards";
+            card.id = String(index);
+            gameField.appendChild(card);
+            card.innerHTML = _input;
+            card.classList.add("card");
+            card.classList.add("hidden");
+            choosenInputArray.push(card);
+            checkLastCard.push(card);
+            card.addEventListener("click", clickCards);
+            card.style.width = size + "px";
+            card.style.height = size + "px";
+            if (backgroundColor) {
+                card.style.backgroundColor = backgroundColor.toString();
+            }
+            if (cardColor) {
+                card.style.background = cardColor.toString();
+            }
+            if (fontColor) {
+                card.style.color = fontColor.toString();
+            }
+            if (font) {
+                card.style.fontFamily = font.toString();
+            }
         }
     }
     function clickCards(_event) {

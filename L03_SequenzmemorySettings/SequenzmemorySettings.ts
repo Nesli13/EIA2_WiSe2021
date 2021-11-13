@@ -42,7 +42,7 @@ namespace Sequenzmemory {
                 formDiv.style.display = "block";
                 text.style.display = "block";
                 memoryDiv.style.display = "none";
-                
+
             }
 
 
@@ -86,38 +86,46 @@ namespace Sequenzmemory {
     }
 
     function createGame(_event: Event): void {
-        gameField = document.createElement("div#memory");
-        gameField.style.backgroundColor = <string>formData.get("background")?.toString();
 
-        let card: HTMLSpanElement = document.createElement("span");
-       
+        for (let index: number = 0; index < choosenInputArray.length; index++) {
+            gameField = document.createElement("div");
+            gameField.style.backgroundColor = <string>formData.get("background")?.toString();
 
-        card.innerHTML = _input;
-        card.classList.add("card");
-        card.classList.add("hidden");
 
-        choosenInputArray.push(card);
-        checkLastCard.push(card);
-        card.addEventListener("click", clickCards);
+            let card: HTMLDivElement = document.createElement("div");
 
-        card.style.width = size + "px";
-        card.style.height = size + "px";
-        if (backgroundColor) {
-            card.style.backgroundColor = backgroundColor.toString();
+            card.className = "cards";
+            card.id = String(index);
+            gameField.appendChild(card);
+            
+
+            card.innerHTML = _input;
+            card.classList.add("card");
+            card.classList.add("hidden");
+
+            choosenInputArray.push(card);
+            checkLastCard.push(card);
+            card.addEventListener("click", clickCards);
+
+            card.style.width = size + "px";
+            card.style.height = size + "px";
+            if (backgroundColor) {
+                card.style.backgroundColor = backgroundColor.toString();
+            }
+
+            if (cardColor) {
+                card.style.background = cardColor.toString();
+            }
+
+            if (fontColor) {
+                card.style.color = fontColor.toString();
+            }
+
+            if (font) {
+                card.style.fontFamily = font.toString();
+            }
+
         }
-
-        if (cardColor) {
-            card.style.background = cardColor.toString();
-        }
-
-        if (fontColor) {
-            card.style.color = fontColor.toString();
-        }
-
-        if (font) {
-            card.style.fontFamily = font.toString();
-        }
-
     }
     function clickCards(_event: Event): void {
         let target: HTMLElement = <HTMLElement>_event.target;
@@ -136,6 +144,7 @@ namespace Sequenzmemory {
                 setTimeout(checkCards, 500);
             }
         }
+
     }
     function checkCards(): void {
         if (showLetterArray[0].innerHTML == choosenInputArray[0].innerHTML) {
@@ -178,7 +187,7 @@ namespace Sequenzmemory {
 
             let choosenInputArray: string[] = choosenInput.split("");
             shuffle(choosenInputArray);
-           // document.getElementById("para").innerHTML = choosenInputArray;  
+            // document.getElementById("para").innerHTML = choosenInputArray;  
             // document.getElementById("para").innerText = arr;
             console.log(choosenInputArray);
 
