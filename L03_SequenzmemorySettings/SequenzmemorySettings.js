@@ -3,7 +3,8 @@
 Name: Neslisah Koc
 Matrikel: 270155
 Datum:
-Quellen: Zusammenarbeit mit Verena Rothweiler */
+Quellen: Zusammenarbeit mit Verena Rothweiler
+Leider funktioniert noch nicht alles.. tut uns leid.*/
 var Sequenzmemory;
 (function (Sequenzmemory) {
     let choosenInput; //Karteninhalt
