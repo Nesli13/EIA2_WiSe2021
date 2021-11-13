@@ -16,7 +16,7 @@ namespace Sequenzmemory {
     let cardColor: FormDataEntryValue | null;
     let font: FormDataEntryValue | null;
     let fontColor: FormDataEntryValue | null;
-    let gameField: HTMLDivElement;
+    let gameField: HTMLElement;
     let _input: string;
 
     window.addEventListener("load", handleload);
@@ -86,10 +86,11 @@ namespace Sequenzmemory {
     }
 
     function createGame(_event: Event): void {
-        gameField = document.createElement("div");
+        gameField = document.createElement("div#memory");
         gameField.style.backgroundColor = <string>formData.get("background")?.toString();
 
         let card: HTMLSpanElement = document.createElement("span");
+       
 
         card.innerHTML = _input;
         card.classList.add("card");

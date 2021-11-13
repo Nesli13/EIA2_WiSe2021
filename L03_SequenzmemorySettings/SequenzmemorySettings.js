@@ -72,7 +72,7 @@ var Sequenzmemory;
             console.log("Checked: " + target.name + " = " + target.checked);
     }
     function createGame(_event) {
-        gameField = document.createElement("div");
+        gameField = document.createElement("div#memory");
         gameField.style.backgroundColor = formData.get("background")?.toString();
         let card = document.createElement("span");
         card.innerHTML = _input;
