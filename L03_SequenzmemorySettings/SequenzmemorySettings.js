@@ -12,11 +12,13 @@ var Sequenzmemory;
     let showLetter = 0;
     let showLetterArray = [];
     let checkLastCard = [];
+    let gameField;
     function handleload(_event) {
         console.log("handleload");
         input = document.getElementById("Textinput");
         input.addEventListener("click", promptInput);
         const targetDiv = document.getElementById("form");
+        const otherDiv = document.getElementById("#memory");
         const btn = document.getElementById("Textinput");
         const text = document.getElementById("title");
         btn.onclick = function () {
@@ -27,6 +29,12 @@ var Sequenzmemory;
             else {
                 targetDiv.style.display = "block";
                 text.style.display = "block";
+                if (otherDiv.style.display == "none") {
+                    otherDiv.style.display = "block";
+                }
+                else {
+                    otherDiv.style.display = "none";
+                }
             }
         };
         let createGame = document.querySelector(".start");
@@ -54,7 +62,11 @@ var Sequenzmemory;
     let font;
     let fontColor;
     function createCard(_input) {
-        let card = document.createElement("div");
+        gameField = document.createElement("div");
+        gameField.style.backgroundColor = formData.get("background")?.toString();
+        let card = document.createElement("span");
+        let body = document.querySelector("body");
+        body.appendChild(gameField);
         card.innerHTML = _input;
         card.classList.add("card");
         card.classList.add("hidden");
@@ -112,39 +124,45 @@ var Sequenzmemory;
         showLetter = 0;
         checkWin();
     }
+    // tslint:disable-next-line: no-any
+    function shuffle(array) {
+        // tslint:disable-next-line: no-any
+        var currentIndex = array.length, temporaryValue, randomIndex;
+        while (0 !== currentIndex) {
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+        return array;
+    }
     function promptInput(_event) {
         var a = prompt("type a message", "");
         if (a != null) {
-            document.getElementById("para").innerHTML = a;
+            //console.log(arr);
+            // document.getElementById("para").innerText = a;  
+            let arr = a.split("");
+            shuffle(arr);
+            // document.getElementById("para").innerText = arr;
+            console.log(arr);
         }
     }
+    function shuffleArray(_arr) {
+        for (var i = _arr.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var temp = _arr[i];
+            _arr[i] = _arr[j];
+            _arr[j] = temp;
+        }
+        return _arr;
+    }
     function main(_event) {
-        /*  let fieldset: HTMLFormElement = <HTMLFormElement>document.querySelector(".fsAdjustment");
-          if (fieldset.classList.contains("visible")) {
-              fieldset.classList.remove("visible");
-              fieldset.classList.add("is-hidden");
-          }
-          formData = new FormData(document.forms[0]);
-          console.log(formData);
-          
-          size = Number(formData.get("Slider"));
-          backgroundColor = formData.get("BGColor");
-          cardColor = formData.get("CColor");
-          fontColor = formData.get("FColor");
-          font = formData.get("Radiogroup");
-  
-          let pairOfCards: FormDataEntryValue | null = formData.get("Stepper");
-          if (pairOfCards) {
-          numPairs = Number(pairOfCards);
-          }
-          else {
-              numPairs = 5;
-          }
-  
-          for (let i: number = 0; i < numPairs; i++) {
-              createCard(input[i]);
-              createCard(input[i]);
-          }*/
+        shuffleArray(inputArray);
+        for (let i = 0; i < inputArray.length; i++) {
+            let user = document.getElementById("user");
+            user.appendChild(inputArray[i]);
+        }
     }
 })(Sequenzmemory || (Sequenzmemory = {}));
 //# sourceMappingURL=SequenzmemorySettings.js.map

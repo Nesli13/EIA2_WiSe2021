@@ -12,6 +12,7 @@ namespace Sequenzmemory {
     let showLetter: number = 0;
     let showLetterArray: HTMLElement[] = [];
     let checkLastCard: HTMLElement[] = [];
+    let gameField: HTMLDivElement;
 
 
     function handleload(_event: Event): void {
@@ -20,22 +21,38 @@ namespace Sequenzmemory {
         input = <HTMLInputElement>document.getElementById("Textinput");
         input.addEventListener("click", promptInput);
 
+
+
+
         const targetDiv: HTMLElement = document.getElementById("form");
+        const otherDiv: HTMLElement = document.getElementById("#memory");
         const btn: HTMLElement = document.getElementById("Textinput");
         const text: HTMLElement = document.getElementById("title");
         btn.onclick = function (): void {
             if (targetDiv.style.display !== "none") {
                 targetDiv.style.display = "none";
                 text.style.display = "none";
+
             } else {
                 targetDiv.style.display = "block";
                 text.style.display = "block";
+                if (otherDiv.style.display == "none") {
+                    otherDiv.style.display = "block";
+
+                }
+                else {
+                    otherDiv.style.display = "none";
+                }
             }
-            
+
+
         };
+
+
 
         let createGame: HTMLElement = <HTMLElement>document.querySelector(".start");
         createGame.addEventListener("click", main);
+
 
         let fieldsets: NodeListOf<HTMLFieldSetElement> = document.querySelectorAll("fieldset");
 
@@ -56,6 +73,7 @@ namespace Sequenzmemory {
             console.log("Input: " + target.name + " = " + target.value, _event);
 
     }
+
     let formData: FormData;
     let size: number;
     let backgroundColor: FormDataEntryValue | null;
@@ -64,7 +82,13 @@ namespace Sequenzmemory {
     let fontColor: FormDataEntryValue | null;
 
     function createCard(_input: string): void {
-        let card: HTMLElement = document.createElement("div");
+        gameField = document.createElement("div");
+        gameField.style.backgroundColor = <string>formData.get("background")?.toString();
+        let card: HTMLSpanElement = document.createElement("span");
+
+        let body: HTMLBodyElement = <HTMLBodyElement>document.querySelector("body");
+        body.appendChild(gameField);
+
 
         card.innerHTML = _input;
         card.classList.add("card");
@@ -129,11 +153,32 @@ namespace Sequenzmemory {
         checkWin();
     }
 
+    // tslint:disable-next-line: no-any
+    function shuffle(array: any): any {
+        // tslint:disable-next-line: no-any
+        var currentIndex: any = array.length, temporaryValue: any, randomIndex: any;
+        while (0 !== currentIndex) {
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+        return array;
+    }
+
     function promptInput(_event: Event): void {
         var a: string = prompt("type a message", "");
 
+
         if (a != null) {
-            document.getElementById("para").innerHTML = a;
+            //console.log(arr);
+            // document.getElementById("para").innerText = a;  
+            let arr: string[] = a.split("");
+            shuffle(arr);
+
+            // document.getElementById("para").innerText = arr;
+            console.log(arr);
 
         }
 
@@ -141,33 +186,25 @@ namespace Sequenzmemory {
 
 
 
-    function main(_event: Event): void {
-        /*  let fieldset: HTMLFormElement = <HTMLFormElement>document.querySelector(".fsAdjustment");
-          if (fieldset.classList.contains("visible")) {
-              fieldset.classList.remove("visible");
-              fieldset.classList.add("is-hidden");
-          }
-          formData = new FormData(document.forms[0]); 
-          console.log(formData);
-          
-          size = Number(formData.get("Slider"));
-          backgroundColor = formData.get("BGColor"); 
-          cardColor = formData.get("CColor"); 
-          fontColor = formData.get("FColor"); 
-          font = formData.get("Radiogroup"); 
-  
-          let pairOfCards: FormDataEntryValue | null = formData.get("Stepper"); 
-          if (pairOfCards) {
-          numPairs = Number(pairOfCards);
-          }
-          else {
-              numPairs = 5;
-          }
-  
-          for (let i: number = 0; i < numPairs; i++) {
-              createCard(input[i]);
-              createCard(input[i]);
-          }*/
+    function shuffleArray(_arr: any[]): any[] {
+        for (var i: number = _arr.length - 1; i > 0; i--) {
+            var j: number = Math.floor(Math.random() * (i + 1));
+            var temp: number = _arr[i];
+            _arr[i] = _arr[j];
+            _arr[j] = temp;
+        }
+        return _arr;
     }
+    function main(_event: Event): void {
+
+        shuffleArray(inputArray);
+        for (let i: number = 0; i < inputArray.length; i++) {
+            let user: HTMLDivElement = <HTMLDivElement>document.getElementById("user");
+            user.appendChild(inputArray[i]);
+
+        }
+    }
+
+
 
 }

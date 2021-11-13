@@ -5,6 +5,14 @@
     width: 470px;
 }
 
+#memory {
+    background-color: rgb(236, 197, 248);
+    border: 0px;
+    margin: auto;
+    width: 470px;
+    margin-top: 300px;
+}
+
 h1 {
     color: blueviolet;
     text-align: center;
@@ -64,5 +72,5 @@ input[type="button"] {
 }
 
 .open {
-    background-color: rgb(231, 236, 234);
+    background-color: rgb(42, 163, 115);
 }
