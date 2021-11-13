@@ -12,7 +12,7 @@
 
 <body>
     <h1>Memory</h1>
-    <p>Memroy-Settings</p>
+    <p id="title">Memroy-Settings</p>
     <div id="form">
         <fieldset id="form">
 
@@ -20,32 +20,33 @@
             <input class="Cards" type="number" name="Cards" step="1" min="5" max="25" value="5" />
             <br />
 
-            <hr>Cardsize:
-            <input class="Size" type="range" name="Size" min="100" max="200" step="10" value="100" />
+            <hr>Cardsize: 200px
+            <input class="Size" type="range" name="Size" min="200" max="600" step="100" value="200" /> 600px
             <!-- wenn keine Eingabe stattfindet, wird der value genommen-->
             <br />
 
             <hr><br> Color:<br>
-            <input type="radio" name="Background" value="background" id="background" /> <label class="input" for="background">Background</label><input type="color" name="Color" step="0.1" min="-1" max="1" value="0">
-            <input type="radio" name="Background" value="card" id="card" /><label class="input" for="card">Cards</label><input type="color" name="Color" step="0.1" min="-1" max="1" value="0">
-            <input type="radio" name="Background" value="font" id="font" /><label class="input" for="font">Font</label><input type="color" name="Color" step="0.1" min="-1" max="1" value="0"><br>
+            <input type="radio" name="Background" value="background" id="background"> <label for="background">Background</label><input type="color" name="Color" step="0.1" min="-1" max="1" value="0">
+            <input type="radio" name="Card" value="card" id="card"><label for="card">Cards</label><input type="color" name="Color" step="0.1" min="-1" max="1" value="0">
+            <input type="radio" name="Font" value="font" id="font"><label for="font">Font</label><input type="color" name="Color" step="0.1" min="-1" max="1" value="0"><br>
 
             <hr /> Fonts:<br>
-            <input type="radio" name="Font" value="arial" id="arial" />
+            <input type="radio" name="Fonts" value="arial" id="arial" />
             <label for="arial">Arial</label>
-            <input type="radio" name="Font" value="helvetica" id="helvetica" />
+            <input type="radio" name="Fonts" value="helvetica" id="helvetica" />
             <label for="helvetica">Helvetica</label>
-            <input type="radio" name="Font" value="calibri" id="calibri" />
+            <input type="radio" name="Fonts" value="calibri" id="calibri" />
             <label for="calibri">Calibri</label>
             <hr /> Time: <input class="Time" type="number" name="Time" step="1" min="1" max="5" value="1">
             <hr>
             <!---<input type="text" name="Text" placeholder="type here" required /><br>-->
-            <input type="button" name="input" value="Try it" id="input" />
+            <input type="button" class="start" value="Try it" id="Textinput" onclick="promptInput()">
+
 
         </fieldset>
     </div>
     <div id="memory">
-
+        <p id="para"></p>
     </div>
 </body>
 
