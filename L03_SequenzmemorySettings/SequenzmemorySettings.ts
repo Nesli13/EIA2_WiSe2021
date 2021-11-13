@@ -150,7 +150,7 @@ namespace Sequenzmemory {
         }
         inputArray = [];
         showLetter = 0;
-        checkWin();
+        //checkWin();
     }
 
     // tslint:disable-next-line: no-any
