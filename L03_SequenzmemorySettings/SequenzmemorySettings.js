@@ -6,39 +6,52 @@ Datum:
 Quellen: Zusammenarbeit mit Verena Rothweiler */
 var Sequenzmemory;
 (function (Sequenzmemory) {
-    window.addEventListener("load", handleload);
-    let input; //Karteninhalt
-    let inputArray = [];
+    let choosenInput; //Karteninhalt
+    let choosenInputArray = [];
     let showLetter = 0;
     let showLetterArray = [];
     let checkLastCard = [];
+    let formData;
+    let size;
+    let backgroundColor;
+    let cardColor;
+    let font;
+    let fontColor;
     let gameField;
+    let _input;
+    window.addEventListener("load", handleload);
     function handleload(_event) {
         console.log("handleload");
-        input = document.getElementById("Textinput");
-        input.addEventListener("click", promptInput);
-        const targetDiv = document.getElementById("form");
-        const otherDiv = document.getElementById("#memory");
+        choosenInput = document.getElementById("Textinput");
+        choosenInput.addEventListener("click", chooseInput);
+        // nach der Eingabe verschwindet die div mit der id="form" und  id="memory" erscheint
+        const formDiv = document.getElementById("form");
+        const memoryDiv = document.getElementById("memory");
         const btn = document.getElementById("Textinput");
         const text = document.getElementById("title");
         btn.onclick = function () {
-            if (targetDiv.style.display !== "none") {
-                targetDiv.style.display = "none";
+            if (formDiv.style.display !== "none") {
+                formDiv.style.display = "none";
                 text.style.display = "none";
+                memoryDiv.style.display = "block";
             }
             else {
-                targetDiv.style.display = "block";
+                formDiv.style.display = "block";
                 text.style.display = "block";
-                if (otherDiv.style.display == "none") {
-                    otherDiv.style.display = "block";
-                }
-                else {
-                    otherDiv.style.display = "none";
-                }
+                memoryDiv.style.display = "none";
             }
         };
-        let createGame = document.querySelector(".start");
-        createGame.addEventListener("click", main);
+        let game = document.querySelector(".start");
+        game.addEventListener("click", startGame);
+        function startGame(_event) {
+            shuffleArray(choosenInputArray);
+            for (let i = 0; i < choosenInputArray.length; i++) {
+                let user = document.getElementById("user");
+                user.appendChild(choosenInputArray[i]);
+            }
+            // tslint:disable-next-line: no-unused-expression
+            createGame;
+        }
         let fieldsets = document.querySelectorAll("fieldset");
         // Install listeners on fieldsets
         for (let i = 0; i < fieldsets.length; i++) {
@@ -54,23 +67,18 @@ var Sequenzmemory;
             console.warn("Change: " + target.name + " = " + target.value, _event);
         else
             console.log("Input: " + target.name + " = " + target.value, _event);
+        // Handling checkbox
+        if (target.type == "checkbox")
+            console.log("Checked: " + target.name + " = " + target.checked);
     }
-    let formData;
-    let size;
-    let backgroundColor;
-    let cardColor;
-    let font;
-    let fontColor;
-    function createCard(_input) {
+    function createGame(_event) {
         gameField = document.createElement("div");
         gameField.style.backgroundColor = formData.get("background")?.toString();
         let card = document.createElement("span");
-        let body = document.querySelector("body");
-        body.appendChild(gameField);
         card.innerHTML = _input;
         card.classList.add("card");
         card.classList.add("hidden");
-        inputArray.push(card);
+        choosenInputArray.push(card);
         checkLastCard.push(card);
         card.addEventListener("click", clickCards);
         card.style.width = size + "px";
@@ -108,44 +116,44 @@ var Sequenzmemory;
         }
     }
     function checkCards() {
-        if (showLetterArray[0].innerHTML == inputArray[0].innerHTML) {
-            for (let i = 0; i < inputArray.length; i++) {
+        if (showLetterArray[0].innerHTML == choosenInputArray[0].innerHTML) {
+            for (let i = 0; i < choosenInputArray.length; i++) {
                 showLetterArray[i].classList.remove("open");
                 showLetterArray[i].classList.add("done");
             }
         }
         else {
-            for (let i = 0; i < inputArray.length; i++) {
+            for (let i = 0; i < choosenInputArray.length; i++) {
                 showLetterArray[i].classList.remove("open");
                 showLetterArray[i].classList.add("hidden");
             }
         }
-        inputArray = [];
+        choosenInputArray = [];
         showLetter = 0;
         //checkWin();
     }
     // tslint:disable-next-line: no-any
     function shuffle(array) {
         // tslint:disable-next-line: no-any
-        var currentIndex = array.length, temporaryValue, randomIndex;
-        while (0 !== currentIndex) {
-            randomIndex = Math.floor(Math.random() * currentIndex);
-            currentIndex -= 1;
-            temporaryValue = array[currentIndex];
-            array[currentIndex] = array[randomIndex];
+        var choosenInput = array.length, temporaryValue, randomIndex;
+        while (0 !== choosenInput) {
+            randomIndex = Math.floor(Math.random() * choosenInput);
+            choosenInput -= 1;
+            temporaryValue = array[choosenInput];
+            array[choosenInput] = array[randomIndex];
             array[randomIndex] = temporaryValue;
         }
         return array;
     }
-    function promptInput(_event) {
-        var a = prompt("type a message", "");
-        if (a != null) {
+    function chooseInput(_event) {
+        var choosenInput = prompt("type a message", "");
+        if (choosenInput != null) {
             //console.log(arr);
-            // document.getElementById("para").innerText = a;  
-            let arr = a.split("");
-            shuffle(arr);
+            let choosenInputArray = choosenInput.split("");
+            shuffle(choosenInputArray);
+            // document.getElementById("para").innerHTML = choosenInputArray;  
             // document.getElementById("para").innerText = arr;
-            console.log(arr);
+            console.log(choosenInputArray);
         }
     }
     function shuffleArray(_arr) {
@@ -156,13 +164,6 @@ var Sequenzmemory;
             _arr[j] = temp;
         }
         return _arr;
-    }
-    function main(_event) {
-        shuffleArray(inputArray);
-        for (let i = 0; i < inputArray.length; i++) {
-            let user = document.getElementById("user");
-            user.appendChild(inputArray[i]);
-        }
     }
 })(Sequenzmemory || (Sequenzmemory = {}));
 //# sourceMappingURL=SequenzmemorySettings.js.map

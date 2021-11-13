@@ -5,55 +5,62 @@ Datum:
 Quellen: Zusammenarbeit mit Verena Rothweiler */
 namespace Sequenzmemory {
 
-    window.addEventListener("load", handleload);
-
-    let input: HTMLInputElement; //Karteninhalt
-    let inputArray: HTMLElement[] = [];
+    let choosenInput: HTMLInputElement; //Karteninhalt
+    let choosenInputArray: HTMLElement[] = [];
     let showLetter: number = 0;
     let showLetterArray: HTMLElement[] = [];
     let checkLastCard: HTMLElement[] = [];
+    let formData: FormData;
+    let size: number;
+    let backgroundColor: FormDataEntryValue | null;
+    let cardColor: FormDataEntryValue | null;
+    let font: FormDataEntryValue | null;
+    let fontColor: FormDataEntryValue | null;
     let gameField: HTMLDivElement;
+    let _input: string;
 
+    window.addEventListener("load", handleload);
 
     function handleload(_event: Event): void {
         console.log("handleload");
 
-        input = <HTMLInputElement>document.getElementById("Textinput");
-        input.addEventListener("click", promptInput);
-
-
-
-
-        const targetDiv: HTMLElement = document.getElementById("form");
-        const otherDiv: HTMLElement = document.getElementById("#memory");
+        choosenInput = <HTMLInputElement>document.getElementById("Textinput");
+        choosenInput.addEventListener("click", chooseInput);
+        // nach der Eingabe verschwindet die div mit der id="form" und  id="memory" erscheint
+        const formDiv: HTMLElement = document.getElementById("form");
+        const memoryDiv: HTMLElement = document.getElementById("memory");
         const btn: HTMLElement = document.getElementById("Textinput");
         const text: HTMLElement = document.getElementById("title");
         btn.onclick = function (): void {
-            if (targetDiv.style.display !== "none") {
-                targetDiv.style.display = "none";
+            if (formDiv.style.display !== "none") {
+                formDiv.style.display = "none";
                 text.style.display = "none";
+                memoryDiv.style.display = "block";
+
 
             } else {
-                targetDiv.style.display = "block";
+                formDiv.style.display = "block";
                 text.style.display = "block";
-                if (otherDiv.style.display == "none") {
-                    otherDiv.style.display = "block";
-
-                }
-                else {
-                    otherDiv.style.display = "none";
-                }
+                memoryDiv.style.display = "none";
+                
             }
 
 
         };
+        let game: HTMLElement = <HTMLElement>document.querySelector(".start");
+        game.addEventListener("click", startGame);
 
+        function startGame(_event: Event): void {
 
+            shuffleArray(choosenInputArray);
+            for (let i: number = 0; i < choosenInputArray.length; i++) {
+                let user: HTMLDivElement = <HTMLDivElement>document.getElementById("user");
+                user.appendChild(choosenInputArray[i]);
 
-        let createGame: HTMLElement = <HTMLElement>document.querySelector(".start");
-        createGame.addEventListener("click", main);
-
-
+            }
+            // tslint:disable-next-line: no-unused-expression
+            createGame;
+        }
         let fieldsets: NodeListOf<HTMLFieldSetElement> = document.querySelectorAll("fieldset");
 
         // Install listeners on fieldsets
@@ -61,9 +68,9 @@ namespace Sequenzmemory {
             let fieldset: HTMLFieldSetElement = fieldsets[i];
             fieldset.addEventListener("change", handleChange);
             fieldset.addEventListener("input", handleChange);
+
         }
     }
-
     function handleChange(_event: Event): void {
         let target: HTMLInputElement = <HTMLInputElement>_event.target;
         console.log();
@@ -72,29 +79,23 @@ namespace Sequenzmemory {
         else
             console.log("Input: " + target.name + " = " + target.value, _event);
 
+        // Handling checkbox
+        if (target.type == "checkbox")
+            console.log("Checked: " + target.name + " = " + target.checked);
+
     }
 
-    let formData: FormData;
-    let size: number;
-    let backgroundColor: FormDataEntryValue | null;
-    let cardColor: FormDataEntryValue | null;
-    let font: FormDataEntryValue | null;
-    let fontColor: FormDataEntryValue | null;
-
-    function createCard(_input: string): void {
+    function createGame(_event: Event): void {
         gameField = document.createElement("div");
         gameField.style.backgroundColor = <string>formData.get("background")?.toString();
+
         let card: HTMLSpanElement = document.createElement("span");
-
-        let body: HTMLBodyElement = <HTMLBodyElement>document.querySelector("body");
-        body.appendChild(gameField);
-
 
         card.innerHTML = _input;
         card.classList.add("card");
         card.classList.add("hidden");
 
-        inputArray.push(card);
+        choosenInputArray.push(card);
         checkLastCard.push(card);
         card.addEventListener("click", clickCards);
 
@@ -136,19 +137,19 @@ namespace Sequenzmemory {
         }
     }
     function checkCards(): void {
-        if (showLetterArray[0].innerHTML == inputArray[0].innerHTML) {
-            for (let i: number = 0; i < inputArray.length; i++) {
+        if (showLetterArray[0].innerHTML == choosenInputArray[0].innerHTML) {
+            for (let i: number = 0; i < choosenInputArray.length; i++) {
                 showLetterArray[i].classList.remove("open");
                 showLetterArray[i].classList.add("done");
             }
         } else {
-            for (let i: number = 0; i < inputArray.length; i++) {
+            for (let i: number = 0; i < choosenInputArray.length; i++) {
                 showLetterArray[i].classList.remove("open");
                 showLetterArray[i].classList.add("hidden");
 
             }
         }
-        inputArray = [];
+        choosenInputArray = [];
         showLetter = 0;
         //checkWin();
     }
@@ -156,29 +157,29 @@ namespace Sequenzmemory {
     // tslint:disable-next-line: no-any
     function shuffle(array: any): any {
         // tslint:disable-next-line: no-any
-        var currentIndex: any = array.length, temporaryValue: any, randomIndex: any;
-        while (0 !== currentIndex) {
-            randomIndex = Math.floor(Math.random() * currentIndex);
-            currentIndex -= 1;
-            temporaryValue = array[currentIndex];
-            array[currentIndex] = array[randomIndex];
+        var choosenInput: any = array.length, temporaryValue: any, randomIndex: any;
+        while (0 !== choosenInput) {
+            randomIndex = Math.floor(Math.random() * choosenInput);
+            choosenInput -= 1;
+            temporaryValue = array[choosenInput];
+            array[choosenInput] = array[randomIndex];
             array[randomIndex] = temporaryValue;
         }
         return array;
     }
 
-    function promptInput(_event: Event): void {
-        var a: string = prompt("type a message", "");
+    function chooseInput(_event: Event): void {
+        var choosenInput: string = prompt("type a message", "");
 
 
-        if (a != null) {
+        if (choosenInput != null) {
             //console.log(arr);
-            // document.getElementById("para").innerText = a;  
-            let arr: string[] = a.split("");
-            shuffle(arr);
 
+            let choosenInputArray: string[] = choosenInput.split("");
+            shuffle(choosenInputArray);
+           // document.getElementById("para").innerHTML = choosenInputArray;  
             // document.getElementById("para").innerText = arr;
-            console.log(arr);
+            console.log(choosenInputArray);
 
         }
 
@@ -195,16 +196,6 @@ namespace Sequenzmemory {
         }
         return _arr;
     }
-    function main(_event: Event): void {
-
-        shuffleArray(inputArray);
-        for (let i: number = 0; i < inputArray.length; i++) {
-            let user: HTMLDivElement = <HTMLDivElement>document.getElementById("user");
-            user.appendChild(inputArray[i]);
-
-        }
-    }
-
 
 
 }
