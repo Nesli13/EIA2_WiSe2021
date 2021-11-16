@@ -6,7 +6,7 @@ Quellen: Zusammenarbeit mit Verena Rothweiler
 Leider funktioniert noch nicht alles.. tut uns leid.*/
 namespace Sequenzmemory {
 
-    let choosenInput: HTMLInputElement; //Karteninhalt
+    let choosenInput: HTMLElement; //Karteninhalt
     let choosenInputArray: HTMLElement[] = [];
     let showLetter: number = 0;
     let showLetterArray: HTMLElement[] = [];
@@ -18,7 +18,7 @@ namespace Sequenzmemory {
     let font: FormDataEntryValue | null;
     let fontColor: FormDataEntryValue | null;
     let gameField: HTMLElement;
-    let _input: string;
+
 
     window.addEventListener("load", handleload);
 
@@ -26,7 +26,7 @@ namespace Sequenzmemory {
         console.log("handleload");
 
         choosenInput = <HTMLInputElement>document.getElementById("Textinput");
-        choosenInput.addEventListener("click", chooseInput);
+        choosenInput.addEventListener("click", createGame);
         // nach der Eingabe verschwindet die div mit der id="form" und  id="memory" erscheint
         const formDiv: HTMLElement = document.getElementById("form");
         const memoryDiv: HTMLElement = document.getElementById("memory");
@@ -59,18 +59,11 @@ namespace Sequenzmemory {
                 user.appendChild(choosenInputArray[i]);
 
             }
-            // tslint:disable-next-line: no-unused-expression
-            createGame;
-        }
-        let fieldsets: NodeListOf<HTMLFieldSetElement> = document.querySelectorAll("fieldset");
 
-        // Install listeners on fieldsets
-        for (let i: number = 0; i < fieldsets.length; i++) {
-            let fieldset: HTMLFieldSetElement = fieldsets[i];
-            fieldset.addEventListener("change", handleChange);
-            fieldset.addEventListener("input", handleChange);
 
         }
+        handleChange(_event);
+
     }
     function handleChange(_event: Event): void {
         let target: HTMLInputElement = <HTMLInputElement>_event.target;
@@ -86,21 +79,35 @@ namespace Sequenzmemory {
 
     }
 
-    function createGame(_event: Event): void {
+    function createGame(): void {
 
-        for (let index: number = 0; index < choosenInputArray.length; index++) {
-            gameField = document.createElement("div");
-            gameField.style.backgroundColor = <string>formData.get("background")?.toString();
+        let choosenInput: string = prompt("type a message", "");
+
+
+        if (choosenInput != null) {
+            //console.log(arr);
+
+            let choosenInputArray: string[] = choosenInput.split("");
+            shuffle(choosenInputArray);
+            // document.getElementById("para").innerHTML = choosenInputArray;  
+            // document.getElementById("para").innerText = arr;
+            console.log(choosenInputArray);
+
+        }
+
+        {
+            gameField = document.createElement("fieldset"); // div in fieldset umgeändert
+            gameField.style.backgroundColor = <string>formData.get("backgroundcolor")?.toString();
 
 
             let card: HTMLDivElement = document.createElement("div");
 
-            card.className = "cards";
-            card.id = String(index);
+            card.className = "card";
+            card.id = String(choosenInputArray);
             gameField.appendChild(card);
-            
 
-            card.innerHTML = _input;
+
+            //card.innerHTML = choosenInputArray;
             card.classList.add("card");
             card.classList.add("hidden");
 
@@ -129,6 +136,7 @@ namespace Sequenzmemory {
         }
     }
     function clickCards(_event: Event): void {
+
         let target: HTMLElement = <HTMLElement>_event.target;
         if (target.classList.contains("card")) {
             showLetter++;
@@ -175,27 +183,10 @@ namespace Sequenzmemory {
             temporaryValue = array[choosenInput];
             array[choosenInput] = array[randomIndex];
             array[randomIndex] = temporaryValue;
+            //console.log("array" + array);
         }
         return array;
     }
-
-    function chooseInput(_event: Event): void {
-        var choosenInput: string = prompt("type a message", "");
-
-
-        if (choosenInput != null) {
-            //console.log(arr);
-
-            let choosenInputArray: string[] = choosenInput.split("");
-            shuffle(choosenInputArray);
-            // document.getElementById("para").innerHTML = choosenInputArray;  
-            // document.getElementById("para").innerText = arr;
-            console.log(choosenInputArray);
-
-        }
-
-    }
-
 
 
     function shuffleArray(_arr: any[]): any[] {
@@ -204,6 +195,7 @@ namespace Sequenzmemory {
             var temp: number = _arr[i];
             _arr[i] = _arr[j];
             _arr[j] = temp;
+
         }
         return _arr;
     }

@@ -19,12 +19,11 @@ var Sequenzmemory;
     let font;
     let fontColor;
     let gameField;
-    let _input;
     window.addEventListener("load", handleload);
     function handleload(_event) {
         console.log("handleload");
         choosenInput = document.getElementById("Textinput");
-        choosenInput.addEventListener("click", chooseInput);
+        choosenInput.addEventListener("click", createGame);
         // nach der Eingabe verschwindet die div mit der id="form" und  id="memory" erscheint
         const formDiv = document.getElementById("form");
         const memoryDiv = document.getElementById("memory");
@@ -50,16 +49,8 @@ var Sequenzmemory;
                 let user = document.getElementById("user");
                 user.appendChild(choosenInputArray[i]);
             }
-            // tslint:disable-next-line: no-unused-expression
-            createGame;
         }
-        let fieldsets = document.querySelectorAll("fieldset");
-        // Install listeners on fieldsets
-        for (let i = 0; i < fieldsets.length; i++) {
-            let fieldset = fieldsets[i];
-            fieldset.addEventListener("change", handleChange);
-            fieldset.addEventListener("input", handleChange);
-        }
+        handleChange(_event);
     }
     function handleChange(_event) {
         let target = _event.target;
@@ -72,15 +63,24 @@ var Sequenzmemory;
         if (target.type == "checkbox")
             console.log("Checked: " + target.name + " = " + target.checked);
     }
-    function createGame(_event) {
-        for (let index = 0; index < choosenInputArray.length; index++) {
-            gameField = document.createElement("div");
-            gameField.style.backgroundColor = formData.get("background")?.toString();
+    function createGame() {
+        let choosenInput = prompt("type a message", "");
+        if (choosenInput != null) {
+            //console.log(arr);
+            let choosenInputArray = choosenInput.split("");
+            shuffle(choosenInputArray);
+            // document.getElementById("para").innerHTML = choosenInputArray;  
+            // document.getElementById("para").innerText = arr;
+            console.log(choosenInputArray);
+        }
+        {
+            gameField = document.createElement("fieldset"); // div in fieldset umgeändert
+            gameField.style.backgroundColor = formData.get("backgroundcolor")?.toString();
             let card = document.createElement("div");
-            card.className = "cards";
-            card.id = String(index);
+            card.className = "card";
+            card.id = String(choosenInputArray);
             gameField.appendChild(card);
-            card.innerHTML = _input;
+            //card.innerHTML = choosenInputArray;
             card.classList.add("card");
             card.classList.add("hidden");
             choosenInputArray.push(card);
@@ -148,19 +148,9 @@ var Sequenzmemory;
             temporaryValue = array[choosenInput];
             array[choosenInput] = array[randomIndex];
             array[randomIndex] = temporaryValue;
+            //console.log("array" + array);
         }
         return array;
-    }
-    function chooseInput(_event) {
-        var choosenInput = prompt("type a message", "");
-        if (choosenInput != null) {
-            //console.log(arr);
-            let choosenInputArray = choosenInput.split("");
-            shuffle(choosenInputArray);
-            // document.getElementById("para").innerHTML = choosenInputArray;  
-            // document.getElementById("para").innerText = arr;
-            console.log(choosenInputArray);
-        }
     }
     function shuffleArray(_arr) {
         for (var i = _arr.length - 1; i > 0; i--) {
