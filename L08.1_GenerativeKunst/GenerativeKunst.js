@@ -6,6 +6,13 @@ var L08_1_GenerativeKunst;
     function handleLoad(_event) {
         let canvas = document.querySelector("canvas");
         crc2 = canvas.getContext("2d");
+        //Farbverlauf
+        let gradient = crc2.createLinearGradient(0, 0, 200, 500);
+        gradient.addColorStop(0, "black");
+        gradient.addColorStop(.5, "blue");
+        gradient.addColorStop(1, "white");
+        crc2.fillStyle = gradient;
+        crc2.fillRect(0, 0, 1000, 1000);
         circle();
     }
     function circle() {

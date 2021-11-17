@@ -9,9 +9,18 @@ namespace L08_1_GenerativeKunst {
         let canvas: HTMLCanvasElement = document.querySelector("canvas")!;
         crc2 = canvas.getContext("2d")!;
 
+
+        //Farbverlauf
+        let gradient: CanvasGradient = crc2.createLinearGradient(0, 0, 200, 500);
+
+        gradient.addColorStop(0, "black");
+        gradient.addColorStop(.5, "blue");
+        gradient.addColorStop(1, "white");
+
+        crc2.fillStyle = gradient;
+        crc2.fillRect(0, 0, 1000, 1000);
+        
         circle();
-
-
     }
 
     function circle(): void {
@@ -75,4 +84,5 @@ namespace L08_1_GenerativeKunst {
         crc2.stroke();
         crc2.fill();
     }
+
 }
