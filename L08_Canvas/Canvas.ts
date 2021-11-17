@@ -67,6 +67,7 @@ namespace Canvas {
         crc2.lineTo(_x + 40, _y + 35);
         crc2.closePath();
 
+        crc2.fillRect(0, 0, 30, 30);
         crc2.fillStyle = "#ff0000";
         crc2.strokeStyle = "blue";
         crc2.lineWidth = 5;
