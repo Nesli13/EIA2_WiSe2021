@@ -20,6 +20,9 @@ var GenerativeKunst;
         drawCloud({ x: 600, y: 125 }, { x: 250, y: 75 });
         drawCloud({ x: 200, y: 200 }, { x: 250, y: 75 });
         particles({ x: 0, y: 200 }, { x: 800, y: 300 });
+        drawTree(30, 210); //red triangle
+        drawTree(30, 280); //blue triangle
+        drawTree(30, 340); //green triangle
     }
     function drawCloud(_position, _size) {
         console.log("Cloud", _position, _size);
@@ -64,6 +67,16 @@ var GenerativeKunst;
             crc2.restore();
         }
         crc2.restore();
+    }
+    function drawTree(_x, _y) {
+        crc2.fillStyle = "brown";
+        crc2.fillRect(110, 260, 40, 400);
+        crc2.fillStyle = "green";
+        crc2.beginPath();
+        crc2.moveTo(_x, _y);
+        crc2.lineTo(_x + 100, _y - 100);
+        crc2.lineTo(_x + 200, _y);
+        crc2.fill();
     }
 })(GenerativeKunst || (GenerativeKunst = {}));
 //# sourceMappingURL=GenerativeKunst.js.map
