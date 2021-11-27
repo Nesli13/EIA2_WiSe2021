@@ -75,6 +75,7 @@ var GenerativeKunst;
         } while (drawn < nParticles);
         crc2.restore();
     }
+    //Baum orange
     function drawTree(_x, _y) {
         crc2.beginPath();
         crc2.save();

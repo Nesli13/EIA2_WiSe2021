@@ -100,6 +100,7 @@ namespace GenerativeKunst {
         crc2.restore();
     }
 
+    //Baum orange
     function drawTree(_x: number, _y: number): void {
 
         crc2.beginPath();
