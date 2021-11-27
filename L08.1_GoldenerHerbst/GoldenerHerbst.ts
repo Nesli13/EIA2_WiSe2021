@@ -47,6 +47,8 @@ namespace GenerativeKunst {
         drawTree(75, 440); //middle triangle
         drawTree(75, 500); //low triangle
         drawAnotherTree({ x: 590, y: 500 }, { x: 20, y: 500 }, "#A0522D");
+
+
         //createSquirrel({ x: 450, y: 530 }, "#8B4513");
         //createSquirrel({ x: 230, y: 430 },  "#8B4513");
 
@@ -63,6 +65,47 @@ namespace GenerativeKunst {
         for (let index: number = 0; index < 4; index++) {
             createSquirrel(({ x: Math.random() * 1100, y: 300 + Math.random() * 250 }), "#8B4513");
         }
+    }
+    function drawSun(_position: Vector): void {
+        console.log("Sun", _position);
+
+        let r1: number = 40;
+        let r2: number = 120;
+
+        let gradient: CanvasGradient = crc2.createRadialGradient(0, 0, r1, 0, 0, r2);
+
+        gradient.addColorStop(0, "HSLA(60, 100%, 90%, 1)");
+        gradient.addColorStop(1, "HSLA(60, 100%, 50%, 0)");
+
+        crc2.save();
+        crc2.translate(_position.x, _position.y);
+        crc2.fillStyle = gradient;
+        crc2.arc(0, 0, r2, 0, 2 * Math.PI);
+        crc2.fill();
+        crc2.restore();
+    }
+
+    function createClouds(_position: Vector, _size: Vector): void {
+
+        crc2.beginPath();
+        let radiusParticle: number = 3000;
+        let particle: Path2D = new Path2D();
+        let gradient: CanvasGradient = crc2.createRadialGradient(0, 0, 0, 0, 0, radiusParticle);
+        particle.arc(0, 0, radiusParticle, 0, 2 * Math.PI);
+
+        gradient.addColorStop(0, "HSLA(0, 100%, 100%, 0.9)");
+        gradient.addColorStop(1, "HSLA(0, 100%, 100%, 0.7)");
+        crc2.save();
+        crc2.fillStyle = gradient;
+
+        crc2.arc(_position.x + 10, _position.y + 30, 25, 0, 2 * Math.PI);
+        crc2.arc(_position.x + 50, _position.y + 25, 40, 0, 2 * Math.PI);
+        crc2.arc(_position.x + 90, _position.y + 20, 35, 0, 2 * Math.PI);
+        crc2.arc(_position.x + 130, _position.y + 20, 25, 0, 2 * Math.PI);
+
+        crc2.closePath();
+        crc2.fill();
+        crc2.restore();
     }
 
     function createStars(_position: Vector, _size: Vector): void {
@@ -100,7 +143,7 @@ namespace GenerativeKunst {
         crc2.restore();
     }
 
-    //Baum orange
+    //Baum dunkelorange
     function drawTree(_x: number, _y: number): void {
 
         crc2.beginPath();
@@ -125,8 +168,10 @@ namespace GenerativeKunst {
         crc2.fillRect(650, 500, 50, 600);
         crc2.closePath();
         crc2.fill();
+        crc2.restore();
 
         crc2.beginPath();
+        crc2.save();
         crc2.fillStyle = "#6B8E23";
         crc2.arc(_position.x + 75, _position.y + -120, 50, -5, 2 * Math.PI);
         crc2.arc(_position.x + 130, _position.y + -80, 50, -5, 2 * Math.PI);
@@ -137,7 +182,7 @@ namespace GenerativeKunst {
 
         crc2.closePath();
         crc2.fill();
-
+        crc2.restore();
         //Baum2 orange
 
         crc2.beginPath();
@@ -146,8 +191,10 @@ namespace GenerativeKunst {
         crc2.fillRect(430, 500, 50, -70);
         crc2.closePath();
         crc2.fill();
+        crc2.restore();
 
         crc2.beginPath();
+        crc2.save();
         crc2.fillStyle = "#FF8C00";
         crc2.arc(_position.x + -175, _position.y + -160, 50, -5, 2 * Math.PI);
         crc2.arc(_position.x + -160, _position.y + -170, 50, -5, 2 * Math.PI);
@@ -157,7 +204,7 @@ namespace GenerativeKunst {
         crc2.arc(_position.x + -165, _position.y + -110, 50, -5, 2 * Math.PI);
         crc2.closePath();
         crc2.fill();
-
+        crc2.restore();
 
     }
     function createRoundLeafs(_position: Vector, _size: Vector, _fillColor: string): void {
@@ -182,9 +229,9 @@ namespace GenerativeKunst {
 
 
         for (let drawn: number = 0; drawn < nParticles; drawn++) {
-            crc2.save();
             let x: number = (Math.random() - 0.1) * _size.x;
             let y: number = -(Math.random() * _size.y);
+            crc2.save();
             crc2.translate(x, y),
                 crc2.fill(particle); //Pfad particle wurde oben erstellt
             crc2.restore();
@@ -237,49 +284,11 @@ namespace GenerativeKunst {
         crc2.restore();
     }
 
-
-
-    /*function drawLines(_x: number, _y: number): void {
-        console.log(_x);
-        crc2.beginPath();
-        crc2.translate(400, 300);
-        crc2.moveTo(25, 20);
-        crc2.lineTo(20, 10);
-        crc2.lineTo(20, 10);
-        crc2.lineTo(100, 75);
-        crc2.closePath();
-
-        crc2.fillStyle = "red";
-        crc2.stroke();
-
-
-
-    }*/
-    function createClouds(_position: Vector, _size: Vector): void {
-
-        crc2.beginPath();
-        let radiusParticle: number = 3000;
-        let particle: Path2D = new Path2D();
-        let gradient: CanvasGradient = crc2.createRadialGradient(0, 0, 0, 0, 0, radiusParticle);
-        particle.arc(0, 0, radiusParticle, 0, 2 * Math.PI);
-
-        gradient.addColorStop(0, "HSLA(0, 100%, 100%, 0.9)");
-        gradient.addColorStop(1, "HSLA(0, 100%, 100%, 0.7)");
-        crc2.fillStyle = gradient;
-
-        crc2.arc(_position.x + 10, _position.y + 30, 25, 0, 2 * Math.PI);
-        crc2.arc(_position.x + 50, _position.y + 25, 40, 0, 2 * Math.PI);
-        crc2.arc(_position.x + 90, _position.y + 20, 35, 0, 2 * Math.PI);
-        crc2.arc(_position.x + 130, _position.y + 20, 25, 0, 2 * Math.PI);
-
-        crc2.closePath();
-        crc2.fill();
-    }
-
     function createSquirrel(_position: Vector, _fillColor: string): void {
 
-
+        //body
         crc2.beginPath();
+        crc2.save();
         crc2.fillStyle = _fillColor;
         crc2.arc(_position.x + 130, _position.y + 19, 12, 0, 2 * Math.PI);
         crc2.arc(_position.x + 135, _position.y + 18, 12, 0, 2 * Math.PI);
@@ -303,12 +312,14 @@ namespace GenerativeKunst {
         crc2.closePath();
         crc2.fill();
 
+        //ears
         crc2.beginPath();
         crc2.fillStyle = "#CD853F";
         crc2.arc(_position.x + 85, _position.y + -50, 9, -5, 2 * Math.PI);
         crc2.closePath();
         crc2.fill();
 
+        //eyes+mouth
         crc2.beginPath();
         crc2.fillStyle = "black";
         crc2.arc(_position.x + 76, _position.y + -29, 4, -5, 2 * Math.PI);
@@ -317,28 +328,24 @@ namespace GenerativeKunst {
         crc2.closePath();
         crc2.fill();
 
-
-
-    }
-
-
-    function drawSun(_position: Vector): void {
-        console.log("Sun", _position);
-
-        let r1: number = 40;
-        let r2: number = 120;
-
-        let gradient: CanvasGradient = crc2.createRadialGradient(0, 0, r1, 0, 0, r2);
-
-        gradient.addColorStop(0, "HSLA(60, 100%, 90%, 1)");
-        gradient.addColorStop(1, "HSLA(60, 100%, 50%, 0)");
-
-        crc2.save();
-        crc2.translate(_position.x, _position.y);
-        crc2.fillStyle = gradient;
-        crc2.arc(0, 0, r2, 0, 2 * Math.PI);
-        crc2.fill();
         crc2.restore();
+
     }
+
+    /*function drawLines(_x: number, _y: number): void {
+            console.log(_x);
+            crc2.beginPath();
+            crc2.translate(400, 300);
+            crc2.moveTo(25, 20);
+            crc2.lineTo(20, 10);
+            crc2.lineTo(20, 10);
+            crc2.lineTo(100, 75);
+            crc2.closePath();
+    
+            crc2.fillStyle = "red";
+            crc2.stroke();
+    
+        }*/
+
 
 }
