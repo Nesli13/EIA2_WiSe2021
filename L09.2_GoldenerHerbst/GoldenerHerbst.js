@@ -14,6 +14,8 @@ var L09_2_Classes;
             this.drawTree(75, 440); //middle triangle
             this.drawTree(75, 500); //low triangle
             this.drawAnotherTree({ x: 590, y: 500 }, { x: 20, y: 500 }, "#A0522D");
+            this.drawFlower({ x: 100, y: 400 }, "#F4DC21");
+            this.drawFlower({ x: 330, y: 400 }, "pink");
             for (let index = 0; index < 4; index++) {
                 this.createSquirrel(({ x: Math.random() * 1100, y: 300 + Math.random() * 250 }), "#8B4513");
             }
@@ -193,6 +195,57 @@ var L09_2_Classes;
             L09_2_Classes.crc2.arc(_position.x + -100, _position.y + -110, 50, -5, 2 * Math.PI);
             L09_2_Classes.crc2.arc(_position.x + -140, _position.y + -200, 50, -5, 2 * Math.PI);
             L09_2_Classes.crc2.arc(_position.x + -165, _position.y + -110, 50, -5, 2 * Math.PI);
+            L09_2_Classes.crc2.closePath();
+            L09_2_Classes.crc2.fill();
+            L09_2_Classes.crc2.restore();
+        }
+        // Blume
+        drawFlower(_position, fillColor) {
+            L09_2_Classes.crc2.save();
+            L09_2_Classes.crc2.translate(_position.x, _position.y);
+            L09_2_Classes.crc2.strokeStyle = "darkgreen";
+            L09_2_Classes.crc2.beginPath();
+            L09_2_Classes.crc2.moveTo(200, 100);
+            L09_2_Classes.crc2.lineTo(200, 180);
+            L09_2_Classes.crc2.closePath();
+            L09_2_Classes.crc2.stroke();
+            L09_2_Classes.crc2.fillStyle = "#361E12";
+            L09_2_Classes.crc2.beginPath();
+            L09_2_Classes.crc2.ellipse(200, 100, 10, 10, 0, 20, 40);
+            L09_2_Classes.crc2.closePath();
+            L09_2_Classes.crc2.fill();
+            L09_2_Classes.crc2.stroke();
+            L09_2_Classes.crc2.fillStyle = fillColor;
+            L09_2_Classes.crc2.beginPath();
+            L09_2_Classes.crc2.ellipse(200, 130, 20, 20, 0, 0, 100);
+            L09_2_Classes.crc2.closePath();
+            L09_2_Classes.crc2.fill();
+            L09_2_Classes.crc2.beginPath();
+            L09_2_Classes.crc2.ellipse(200, 70, 20, 20, 0, 0, 100);
+            L09_2_Classes.crc2.closePath();
+            L09_2_Classes.crc2.fill();
+            L09_2_Classes.crc2.beginPath();
+            L09_2_Classes.crc2.ellipse(170, 100, 20, 20, 0, 0, 100);
+            L09_2_Classes.crc2.closePath();
+            L09_2_Classes.crc2.fill();
+            L09_2_Classes.crc2.beginPath();
+            L09_2_Classes.crc2.ellipse(230, 100, 20, 20, 0, 0, 100);
+            L09_2_Classes.crc2.closePath();
+            L09_2_Classes.crc2.fill();
+            L09_2_Classes.crc2.beginPath();
+            L09_2_Classes.crc2.ellipse(175, 80, 20, 20, 0, 0, 100);
+            L09_2_Classes.crc2.closePath();
+            L09_2_Classes.crc2.fill();
+            L09_2_Classes.crc2.beginPath();
+            L09_2_Classes.crc2.ellipse(222, 79, 20, 20, 0, 0, 100);
+            L09_2_Classes.crc2.closePath();
+            L09_2_Classes.crc2.fill();
+            L09_2_Classes.crc2.beginPath();
+            L09_2_Classes.crc2.ellipse(177, 123, 20, 20, 0, 0, 100);
+            L09_2_Classes.crc2.closePath();
+            L09_2_Classes.crc2.fill();
+            L09_2_Classes.crc2.beginPath();
+            L09_2_Classes.crc2.ellipse(225, 122, 20, 20, 0, 0, 100);
             L09_2_Classes.crc2.closePath();
             L09_2_Classes.crc2.fill();
             L09_2_Classes.crc2.restore();

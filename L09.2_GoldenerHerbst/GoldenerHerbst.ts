@@ -7,6 +7,7 @@ namespace L09_2_Classes {
     export class GoldenerHerbst {
 
         constructor() {
+
             //Farbverlauf
             let golden: number = 0.65; //Goldener-Schnitt
             let horizon: number = crc2.canvas.height * golden;
@@ -19,6 +20,8 @@ namespace L09_2_Classes {
             this.drawTree(75, 440); //middle triangle
             this.drawTree(75, 500); //low triangle
             this.drawAnotherTree({ x: 590, y: 500 }, { x: 20, y: 500 }, "#A0522D");
+            this.drawFlower({ x: 100, y: 400 }, "#F4DC21");
+            this.drawFlower({ x: 330, y: 400 }, "pink");
 
             for (let index: number = 0; index < 4; index++) {
                 this.createSquirrel(({ x: Math.random() * 1100, y: 300 + Math.random() * 250 }), "#8B4513");
@@ -240,5 +243,68 @@ namespace L09_2_Classes {
             crc2.restore();
 
         }
+        // Blume
+        drawFlower(_position: Vector, fillColor: string): void {
+            crc2.save();
+            crc2.translate(_position.x, _position.y);
+            crc2.strokeStyle = "darkgreen";
+
+            crc2.beginPath();
+            crc2.moveTo(200, 100);
+            crc2.lineTo(200, 180);
+            crc2.closePath();
+            crc2.stroke();
+            crc2.fillStyle = "#361E12";
+
+            crc2.beginPath();
+            crc2.ellipse(200, 100, 10, 10, 0, 20, 40);
+            crc2.closePath();
+            crc2.fill();
+            crc2.stroke();
+            crc2.fillStyle = fillColor;
+
+            crc2.beginPath();
+            crc2.ellipse(200, 130, 20, 20, 0, 0, 100);
+            crc2.closePath();
+            crc2.fill();
+
+            crc2.beginPath();
+            crc2.ellipse(200, 70, 20, 20, 0, 0, 100);
+            crc2.closePath();
+            crc2.fill();
+
+            crc2.beginPath();
+            crc2.ellipse(170, 100, 20, 20, 0, 0, 100);
+            crc2.closePath();
+            crc2.fill();
+
+            crc2.beginPath();
+            crc2.ellipse(230, 100, 20, 20, 0, 0, 100);
+            crc2.closePath();
+            crc2.fill();
+
+            crc2.beginPath();
+            crc2.ellipse(175, 80, 20, 20, 0, 0, 100);
+            crc2.closePath();
+            crc2.fill();
+
+            crc2.beginPath();
+            crc2.ellipse(222, 79, 20, 20, 0, 0, 100);
+            crc2.closePath();
+            crc2.fill();
+
+            crc2.beginPath();
+            crc2.ellipse(177, 123, 20, 20, 0, 0, 100);
+            crc2.closePath();
+            crc2.fill();
+
+            crc2.beginPath();
+            crc2.ellipse(225, 122, 20, 20, 0, 0, 100);
+            crc2.closePath();
+            crc2.fill();
+
+            crc2.restore();
+        }
+
     }
 }
