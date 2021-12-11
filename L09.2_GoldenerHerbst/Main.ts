@@ -1,4 +1,4 @@
-namespace L09_2_Classes {
+ namespace L09_2_Classes {
     window.addEventListener("load", hndLoad);
 
 
