@@ -23,58 +23,12 @@ namespace L09_2_Classes {
             this.drawFlower({ x: 100, y: 400 }, "#F4DC21");
             this.drawFlower({ x: 330, y: 400 }, "pink");
 
-            for (let index: number = 0; index < 4; index++) {
+           /* for (let index: number = 0; index < 4; index++) {
                 this.createSquirrel(({ x: Math.random() * 1100, y: 300 + Math.random() * 250 }), "#8B4513");
-            }
+            }*/
         }
 
-        createSquirrel(_position: Vector, _fillColor: string): void {
-            console.log("Create Squirrel");
-
-            //body
-            crc2.beginPath();
-            crc2.save();
-            crc2.fillStyle = _fillColor;
-            crc2.arc(_position.x + 130, _position.y + 19, 12, 0, 2 * Math.PI);
-            crc2.arc(_position.x + 135, _position.y + 18, 12, 0, 2 * Math.PI);
-            crc2.arc(_position.x + 140, _position.y + 17, 12, 0, 2 * Math.PI);
-            crc2.arc(_position.x + 145, _position.y + 16, 12, 0, 2 * Math.PI);
-            crc2.arc(_position.x + 150, _position.y + 14, 12, 0, 2 * Math.PI);
-            crc2.arc(_position.x + 155, _position.y + 11, 12, 0, 2 * Math.PI);
-            crc2.arc(_position.x + 160, _position.y + 9, 12, 0, 2 * Math.PI);
-            crc2.arc(_position.x + 165, _position.y + 6, 12, 0, 2 * Math.PI);
-            crc2.arc(_position.x + 168, _position.y + 4, 12, 0, 2 * Math.PI);
-            crc2.arc(_position.x + 170, _position.y + 3, 12, 0, 2 * Math.PI);
-            crc2.arc(_position.x + 173, _position.y + 2, 12, 0, 2 * Math.PI);
-            crc2.arc(_position.x + 175, _position.y + 0, 12, 0, 2 * Math.PI);
-            crc2.arc(_position.x + 100, _position.y + 50, 13, 0, 2 * Math.PI);
-            crc2.arc(_position.x + 99, _position.y + 17, 35, 0, 2 * Math.PI);
-            crc2.arc(_position.x + 59, _position.y + 21, 12, 15.7, 2 * Math.PI);
-            crc2.arc(_position.x + 85, _position.y + -30, 24, -5, 2 * Math.PI);
-            crc2.arc(_position.x + 85, _position.y + -50, 14, -5, 2 * Math.PI);
-
-            crc2.closePath();
-            crc2.fill();
-
-            //ears
-            crc2.beginPath();
-            crc2.fillStyle = "#CD853F";
-            crc2.arc(_position.x + 85, _position.y + -50, 9, -5, 2 * Math.PI);
-            crc2.closePath();
-            crc2.fill();
-
-            //eyes+mouth
-            crc2.beginPath();
-            crc2.fillStyle = "black";
-            crc2.arc(_position.x + 76, _position.y + -29, 4, -5, 2 * Math.PI);
-            crc2.arc(_position.x + 73, _position.y + -12, 1, -5, 2 * Math.PI);
-            crc2.arc(_position.x + 75, _position.y + -15, 1, -5, 2 * Math.PI);
-            crc2.closePath();
-            crc2.fill();
-
-            crc2.restore();
-
-        }
+      
         drawBackground(): void {
             let gradient: CanvasGradient = crc2.createLinearGradient(0, 0, 10, 400);
             gradient.addColorStop(0, "HSLA(225, 100%, 73%, 1)");
@@ -305,6 +259,53 @@ namespace L09_2_Classes {
 
             crc2.restore();
         }
+          /*createSquirrel(_position: Vector, _fillColor: string): void {
+            console.log("Create Squirrel");
+
+            //body
+            crc2.beginPath();
+            crc2.save();
+            crc2.fillStyle = _fillColor;
+            crc2.arc(_position.x + 130, _position.y + 19, 12, 0, 2 * Math.PI);
+            crc2.arc(_position.x + 135, _position.y + 18, 12, 0, 2 * Math.PI);
+            crc2.arc(_position.x + 140, _position.y + 17, 12, 0, 2 * Math.PI);
+            crc2.arc(_position.x + 145, _position.y + 16, 12, 0, 2 * Math.PI);
+            crc2.arc(_position.x + 150, _position.y + 14, 12, 0, 2 * Math.PI);
+            crc2.arc(_position.x + 155, _position.y + 11, 12, 0, 2 * Math.PI);
+            crc2.arc(_position.x + 160, _position.y + 9, 12, 0, 2 * Math.PI);
+            crc2.arc(_position.x + 165, _position.y + 6, 12, 0, 2 * Math.PI);
+            crc2.arc(_position.x + 168, _position.y + 4, 12, 0, 2 * Math.PI);
+            crc2.arc(_position.x + 170, _position.y + 3, 12, 0, 2 * Math.PI);
+            crc2.arc(_position.x + 173, _position.y + 2, 12, 0, 2 * Math.PI);
+            crc2.arc(_position.x + 175, _position.y + 0, 12, 0, 2 * Math.PI);
+            crc2.arc(_position.x + 100, _position.y + 50, 13, 0, 2 * Math.PI);
+            crc2.arc(_position.x + 99, _position.y + 17, 35, 0, 2 * Math.PI);
+            crc2.arc(_position.x + 59, _position.y + 21, 12, 15.7, 2 * Math.PI);
+            crc2.arc(_position.x + 85, _position.y + -30, 24, -5, 2 * Math.PI);
+            crc2.arc(_position.x + 85, _position.y + -50, 14, -5, 2 * Math.PI);
+
+            crc2.closePath();
+            crc2.fill();
+
+            //ears
+            crc2.beginPath();
+            crc2.fillStyle = "#CD853F";
+            crc2.arc(_position.x + 85, _position.y + -50, 9, -5, 2 * Math.PI);
+            crc2.closePath();
+            crc2.fill();
+
+            //eyes+mouth
+            crc2.beginPath();
+            crc2.fillStyle = "black";
+            crc2.arc(_position.x + 76, _position.y + -29, 4, -5, 2 * Math.PI);
+            crc2.arc(_position.x + 73, _position.y + -12, 1, -5, 2 * Math.PI);
+            crc2.arc(_position.x + 75, _position.y + -15, 1, -5, 2 * Math.PI);
+            crc2.closePath();
+            crc2.fill();
+
+            crc2.restore();
+
+        }*/
 
     }
 }

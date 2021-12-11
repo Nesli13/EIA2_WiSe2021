@@ -2,20 +2,22 @@ namespace L09_2_Classes {
     export class Leafs {
         x: number;
         y: number;
-        _position: number;
-        _size: number;
+        size: number;
         fillColor: string;
         speedLeafs: number;
         radiusParticle: number;
 
-        constructor() {
+       /* constructor(_x: number, _y: number, _fillColor: string) {
             this.createRoundLeafs();
             this.createRoundLeafs2();
             this.createRoundLeafs3();
+            this.x = _x;
+            this.y = _y;
+            this.fillColor = _fillColor;
 
 
 
-        }
+        }*/
         createRoundLeafs(): void {
             let nParticles: number = 10;
             let radiusParticle: number = 10;
@@ -23,7 +25,7 @@ namespace L09_2_Classes {
             let gradient: CanvasGradient = crc2.createRadialGradient(0, 0, 0, 0, 0, radiusParticle);
             particle.arc(0, 0, radiusParticle, 0, 0.6 * Math.PI);
             gradient.addColorStop(0, "orange");
-            
+
             crc2.save();
             crc2.translate(this.x, this.y);
             crc2.rotate(20 * Math.PI / 270);
@@ -32,11 +34,11 @@ namespace L09_2_Classes {
             for (let drawn: number = 0; drawn < nParticles; drawn++) {
                 crc2.save();
                 crc2.restore();
-                let x: number = (Math.random() - 0.9) * this._size;
-                let y: number = -(Math.random() * this._size);
+                let x: number = (Math.random() - 0.9) * this.size;
+                let y: number = -(Math.random() * this.size);
 
                 crc2.translate(x, y),
-                crc2.fill(particle); //Pfad particle wurde oben erstellt
+                    crc2.fill(particle); //Pfad particle wurde oben erstellt
                 crc2.restore();
             }
 
@@ -60,8 +62,8 @@ namespace L09_2_Classes {
 
             for (let drawn: number = 0; drawn < nParticles; drawn++) {
                 crc2.save();
-                let x: number = (Math.random() - 0.9) * this._size;
-                let y: number = -(Math.random() * this._size);
+                let x: number = (Math.random() - 0.9) * this.size;
+                let y: number = -(Math.random() * this.size);
 
                 crc2.translate(x, y),
                     crc2.fill(particle); //Pfad particle wurde oben erstellt
@@ -87,8 +89,8 @@ namespace L09_2_Classes {
 
             for (let drawn: number = 0; drawn < nParticles; drawn++) {
                 crc2.save();
-                let x: number = (Math.random() - 0.9) * this._size;
-                let y: number = -(Math.random() * this._size);
+                let x: number = (Math.random() - 0.9) * this.size;
+                let y: number = -(Math.random() * this.size);
 
                 crc2.translate(x, y),
                     crc2.fill(particle); //Pfad particle wurde oben erstellt

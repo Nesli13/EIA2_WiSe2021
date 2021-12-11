@@ -9,6 +9,7 @@ namespace L09_2_Classes {
     let orangeLeafs: Leafs[] = [];
     let redLeafs: Leafs[] = [];
     let greenLeafs: Leafs[] = [];
+    let squirrel: Squirrel[] = [];
 
 
     function hndLoad(_event: Event): void {
@@ -30,7 +31,7 @@ namespace L09_2_Classes {
             let oneCloud: Cloud = new Cloud();
             oneCloud.x = Math.random() * crc2.canvas.width;
             oneCloud.y = Math.random() * crc2.canvas.height - 350; // Obere Hälfte
-            oneCloud.speedCloud = (Math.random() + 1) * 0.1;
+            oneCloud.speedCloud = (Math.random() + 1) * 0.3;
             bigClouds.push(oneCloud); // Wolke wird ins Array gepusht um beim animieren auf sie zugreifen zu können.
 
         }
@@ -75,6 +76,21 @@ namespace L09_2_Classes {
 
         }
         window.setTimeout(animate, 8);
+
+        // Eichhörnchen platzieren:
+        imgData = crc2.getImageData(0, 0, canvas.width, canvas.height);
+
+        for (let i: number = 0; i < 5; i++) {
+            let oneSquirrel: Squirrel = new Squirrel();
+            oneSquirrel.x = Math.random() * crc2.canvas.width;
+            oneSquirrel.y = Math.random() * crc2.canvas.height + 250; // Obere Hälfte
+            oneSquirrel.speedSquirrel = (Math.random() + 1) * 0.2;
+
+            squirrel.push(oneSquirrel); // Eichhörnchen wird ins Array gepusht um beim animieren auf sie zugreifen zu können.
+
+        }
+        window.setTimeout(animate, 8);
+
     }
 
     function animate(): void {
@@ -118,7 +134,17 @@ namespace L09_2_Classes {
 
         window.setTimeout(animate, 8);
 
+        for (let i: number = 0; i < squirrel.length; i++) {
 
+            squirrel[i].moveSquirrel();
+
+            //Damit die Eichhörnchen wieder ins Bild kommen, sobald sie aus dem Bild geflogen sind.
+            if (squirrel[i].x > + 850) {
+                squirrel[i].x = canvas.width - 950;
+            }
+        }
+        drawSquirrel();
+        window.setTimeout(animate, 8);
     }
 
     function drawClouds(): void {
@@ -137,7 +163,12 @@ namespace L09_2_Classes {
         for (let i: number = 0; i < greenLeafs.length; i++)
             greenLeafs[i].createRoundLeafs3();
     }
+    function drawSquirrel(): void {
 
+        for (let i: number = 0; i < squirrel.length; i++)
+            squirrel[i].createSquirrel();
+
+    }
 
 }
 

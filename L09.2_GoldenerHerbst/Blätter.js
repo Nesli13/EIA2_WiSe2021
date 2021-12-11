@@ -4,16 +4,21 @@ var L09_2_Classes;
     class Leafs {
         x;
         y;
-        _position;
-        _size;
+        size;
         fillColor;
         speedLeafs;
         radiusParticle;
-        constructor() {
-            this.createRoundLeafs();
-            this.createRoundLeafs2();
-            this.createRoundLeafs3();
-        }
+        /* constructor(_x: number, _y: number, _fillColor: string) {
+             this.createRoundLeafs();
+             this.createRoundLeafs2();
+             this.createRoundLeafs3();
+             this.x = _x;
+             this.y = _y;
+             this.fillColor = _fillColor;
+ 
+ 
+ 
+         }*/
         createRoundLeafs() {
             let nParticles = 10;
             let radiusParticle = 10;
@@ -28,8 +33,8 @@ var L09_2_Classes;
             for (let drawn = 0; drawn < nParticles; drawn++) {
                 L09_2_Classes.crc2.save();
                 L09_2_Classes.crc2.restore();
-                let x = (Math.random() - 0.9) * this._size;
-                let y = -(Math.random() * this._size);
+                let x = (Math.random() - 0.9) * this.size;
+                let y = -(Math.random() * this.size);
                 L09_2_Classes.crc2.translate(x, y),
                     L09_2_Classes.crc2.fill(particle); //Pfad particle wurde oben erstellt
                 L09_2_Classes.crc2.restore();
@@ -49,8 +54,8 @@ var L09_2_Classes;
             L09_2_Classes.crc2.fillStyle = gradient;
             for (let drawn = 0; drawn < nParticles; drawn++) {
                 L09_2_Classes.crc2.save();
-                let x = (Math.random() - 0.9) * this._size;
-                let y = -(Math.random() * this._size);
+                let x = (Math.random() - 0.9) * this.size;
+                let y = -(Math.random() * this.size);
                 L09_2_Classes.crc2.translate(x, y),
                     L09_2_Classes.crc2.fill(particle); //Pfad particle wurde oben erstellt
                 L09_2_Classes.crc2.restore();
@@ -70,8 +75,8 @@ var L09_2_Classes;
             L09_2_Classes.crc2.fillStyle = gradient;
             for (let drawn = 0; drawn < nParticles; drawn++) {
                 L09_2_Classes.crc2.save();
-                let x = (Math.random() - 0.9) * this._size;
-                let y = -(Math.random() * this._size);
+                let x = (Math.random() - 0.9) * this.size;
+                let y = -(Math.random() * this.size);
                 L09_2_Classes.crc2.translate(x, y),
                     L09_2_Classes.crc2.fill(particle); //Pfad particle wurde oben erstellt
                 L09_2_Classes.crc2.restore();
