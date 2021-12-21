@@ -5,9 +5,7 @@ var L09_2_Classes;
         x;
         y;
         size;
-        fillColor;
         speedLeafs;
-        radiusParticle;
         /* constructor(_x: number, _y: number, _fillColor: string) {
              this.createRoundLeafs();
              this.createRoundLeafs2();
@@ -95,4 +93,4 @@ var L09_2_Classes;
     }
     L09_2_Classes.Leafs = Leafs;
 })(L09_2_Classes || (L09_2_Classes = {}));
-//# sourceMappingURL=Leafs.js.map
+//# sourceMappingURL=Leaf.js.map

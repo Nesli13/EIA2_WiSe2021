@@ -3,9 +3,8 @@ namespace L09_2_Classes {
         x: number;
         y: number;
         size: number;
-        fillColor: string;
         speedLeafs: number;
-        radiusParticle: number;
+        
 
        /* constructor(_x: number, _y: number, _fillColor: string) {
             this.createRoundLeafs();
