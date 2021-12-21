@@ -1,6 +1,6 @@
 "use strict";
-var L09_Asteroids;
-(function (L09_Asteroids) {
+var L10_2_GoldenerHerbst;
+(function (L10_2_GoldenerHerbst) {
     class Vector {
         x;
         y;
@@ -29,6 +29,6 @@ var L09_Asteroids;
             return new Vector(this.x, this.y);
         }
     }
-    L09_Asteroids.Vector = Vector;
-})(L09_Asteroids || (L09_Asteroids = {}));
+    L10_2_GoldenerHerbst.Vector = Vector;
+})(L10_2_GoldenerHerbst || (L10_2_GoldenerHerbst = {}));
 //# sourceMappingURL=Vector.js.map

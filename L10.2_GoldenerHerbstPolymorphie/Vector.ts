@@ -1,4 +1,4 @@
-namespace L09_Asteroids {
+namespace L10_2_GoldenerHerbst {
     export class Vector {
         x: number;
         y: number;
@@ -30,4 +30,5 @@ namespace L09_Asteroids {
             return new Vector(this.x, this.y);
         }
     }
+
 }
