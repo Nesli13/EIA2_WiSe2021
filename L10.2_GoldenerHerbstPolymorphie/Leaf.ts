@@ -1,10 +1,10 @@
 namespace L10_2_GoldenerHerbst {
 
     export class Leaf extends Moveable {
-        size: number;
+        
 
         constructor(_size: number, _position: Vector, _velocity: Vector) { // ?, bedeutet kann da sein muss aber nicht
-            super(_position, _velocity);
+            super(_position);
 
             console.log("Leaf constructor");
 

@@ -4,16 +4,16 @@ var L10_2_GoldenerHerbst;
     class Moveable {
         position;
         velocity;
+        size;
         constructor(_position, _velocity) {
             console.log("Move Constructor");
+            //position
             if (_position)
-                this.position = _position.copy(); //neuen Vector mit den gleichen Werten
+                this.position = _position; //position, wie deklaiert
             else
-                this.position = new L10_2_GoldenerHerbst.Vector(0, 0);
-            if (_velocity)
-                this.velocity = _velocity.copy();
-            else
-                this.velocity = new L10_2_GoldenerHerbst.Vector(0, 0);
+                this.position = new L10_2_GoldenerHerbst.Vector(0, 0); //position, wenn kein Vektor angegeben ist
+            //geschwindigkeit
+            this.velocity = new L10_2_GoldenerHerbst.Vector(1000, 0); //Geschwindigkeit
         }
         move(_timeslice) {
             console.log("Moveable move");

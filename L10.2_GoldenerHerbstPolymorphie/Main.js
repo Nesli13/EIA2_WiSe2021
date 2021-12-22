@@ -12,6 +12,9 @@ var L10_2_GoldenerHerbst;
         console.log(L10_2_GoldenerHerbst.crc2);
         let horizon = L10_2_GoldenerHerbst.crc2.canvas.height * golden;
         drawBackground();
+        createClouds();
+        //window.setInterval(update, 20);
+        //createSquirrel(new Vector(500, 200));
         drawSun(new L10_2_GoldenerHerbst.Vector(400, 65));
         drawMountains(new L10_2_GoldenerHerbst.Vector(0, horizon), 55, 150, "grey", "white");
         createStars(new L10_2_GoldenerHerbst.Vector(0, 300), new L10_2_GoldenerHerbst.Vector(900, 300));
@@ -19,6 +22,8 @@ var L10_2_GoldenerHerbst;
         drawTree(new L10_2_GoldenerHerbst.Vector(75, 440)); //middle triangle
         drawTree(new L10_2_GoldenerHerbst.Vector(75, 500)); //low triangle
         drawAnotherTree(new L10_2_GoldenerHerbst.Vector(590, 500), (new L10_2_GoldenerHerbst.Vector(20, 500)), "#A0522D");
+        drawFlower(new L10_2_GoldenerHerbst.Vector(100, 400), "#F4DC21");
+        drawFlower(new L10_2_GoldenerHerbst.Vector(330, 400), "pink");
     }
     function drawBackground() {
         let gradient = L10_2_GoldenerHerbst.crc2.createLinearGradient(0, 0, 10, 400);
@@ -159,5 +164,78 @@ var L10_2_GoldenerHerbst;
         L10_2_GoldenerHerbst.crc2.fill();
         L10_2_GoldenerHerbst.crc2.restore();
     }
+    // Blume
+    function drawFlower(_position, fillColor) {
+        L10_2_GoldenerHerbst.crc2.save();
+        L10_2_GoldenerHerbst.crc2.translate(_position.x, _position.y);
+        L10_2_GoldenerHerbst.crc2.strokeStyle = "darkgreen";
+        L10_2_GoldenerHerbst.crc2.beginPath();
+        L10_2_GoldenerHerbst.crc2.moveTo(200, 100);
+        L10_2_GoldenerHerbst.crc2.lineTo(200, 180);
+        L10_2_GoldenerHerbst.crc2.closePath();
+        L10_2_GoldenerHerbst.crc2.stroke();
+        L10_2_GoldenerHerbst.crc2.fillStyle = "#361E12";
+        L10_2_GoldenerHerbst.crc2.beginPath();
+        L10_2_GoldenerHerbst.crc2.ellipse(200, 100, 10, 10, 0, 20, 40);
+        L10_2_GoldenerHerbst.crc2.closePath();
+        L10_2_GoldenerHerbst.crc2.fill();
+        L10_2_GoldenerHerbst.crc2.stroke();
+        L10_2_GoldenerHerbst.crc2.fillStyle = fillColor;
+        L10_2_GoldenerHerbst.crc2.beginPath();
+        L10_2_GoldenerHerbst.crc2.ellipse(200, 130, 20, 20, 0, 0, 100);
+        L10_2_GoldenerHerbst.crc2.closePath();
+        L10_2_GoldenerHerbst.crc2.fill();
+        L10_2_GoldenerHerbst.crc2.beginPath();
+        L10_2_GoldenerHerbst.crc2.ellipse(200, 70, 20, 20, 0, 0, 100);
+        L10_2_GoldenerHerbst.crc2.closePath();
+        L10_2_GoldenerHerbst.crc2.fill();
+        L10_2_GoldenerHerbst.crc2.beginPath();
+        L10_2_GoldenerHerbst.crc2.ellipse(170, 100, 20, 20, 0, 0, 100);
+        L10_2_GoldenerHerbst.crc2.closePath();
+        L10_2_GoldenerHerbst.crc2.fill();
+        L10_2_GoldenerHerbst.crc2.beginPath();
+        L10_2_GoldenerHerbst.crc2.ellipse(230, 100, 20, 20, 0, 0, 100);
+        L10_2_GoldenerHerbst.crc2.closePath();
+        L10_2_GoldenerHerbst.crc2.fill();
+        L10_2_GoldenerHerbst.crc2.beginPath();
+        L10_2_GoldenerHerbst.crc2.ellipse(175, 80, 20, 20, 0, 0, 100);
+        L10_2_GoldenerHerbst.crc2.closePath();
+        L10_2_GoldenerHerbst.crc2.fill();
+        L10_2_GoldenerHerbst.crc2.beginPath();
+        L10_2_GoldenerHerbst.crc2.ellipse(222, 79, 20, 20, 0, 0, 100);
+        L10_2_GoldenerHerbst.crc2.closePath();
+        L10_2_GoldenerHerbst.crc2.fill();
+        L10_2_GoldenerHerbst.crc2.beginPath();
+        L10_2_GoldenerHerbst.crc2.ellipse(177, 123, 20, 20, 0, 0, 100);
+        L10_2_GoldenerHerbst.crc2.closePath();
+        L10_2_GoldenerHerbst.crc2.fill();
+        L10_2_GoldenerHerbst.crc2.beginPath();
+        L10_2_GoldenerHerbst.crc2.ellipse(225, 122, 20, 20, 0, 0, 100);
+        L10_2_GoldenerHerbst.crc2.closePath();
+        L10_2_GoldenerHerbst.crc2.fill();
+        L10_2_GoldenerHerbst.crc2.restore();
+    }
+    function createClouds() {
+        let cloud = new L10_2_GoldenerHerbst.Cloud(0.9);
+        moveables.push(cloud);
+        console.log("Clouds ");
+    }
+    function update() {
+        L10_2_GoldenerHerbst.crc2.fillRect(0, 0, L10_2_GoldenerHerbst.crc2.canvas.width, L10_2_GoldenerHerbst.crc2.canvas.height);
+        for (let moveable of moveables) {
+            moveable.move(1 / 50);
+            moveable.draw();
+        }
+        console.log("Moveable length: ", moveables.length);
+    }
+    /*function createSquirrel(_position: Vector): void {
+        let velocitiy: Vector = new Vector(0, 0);
+        velocitiy.random(100, 200);
+        let squirrel: Moveable = new Squirrel(new Vector(500, 300));
+        moveables.push(squirrel);
+        update();
+        console.log("Squirrel ");
+
+    }*/
 })(L10_2_GoldenerHerbst || (L10_2_GoldenerHerbst = {}));
 //# sourceMappingURL=Main.js.map

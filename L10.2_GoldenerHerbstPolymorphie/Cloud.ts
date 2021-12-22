@@ -1,12 +1,19 @@
 namespace L10_2_GoldenerHerbst {
 
     export class Cloud extends Moveable {
-        
 
-        constructor(_position: Vector, _velocity: Vector) {
-            super(_position, _velocity);
+        velocitiy: Vector;
+       
 
-          
+        constructor(_size: number, _position?: Vector) {
+            super(_position);
+
+            if (_position)
+                this.position = _position;
+            else
+                this.position = new Vector(20, 100);
+
+            this.velocity = new Vector(100, 0);
         }
         draw(): void {
             crc2.beginPath();
@@ -20,17 +27,16 @@ namespace L10_2_GoldenerHerbst {
             crc2.save();
             crc2.fillStyle = gradient;
 
-            crc2.arc(10,  30, 25, 0, 2 * Math.PI);
-            crc2.arc(50,  25, 40, 0, 2 * Math.PI);
-            crc2.arc( 90,  20, 35, 0, 2 * Math.PI);
-            crc2.arc( 130,  20, 25, 0, 2 * Math.PI);
+            crc2.arc(10, 30, 25, 0, 2 * Math.PI);
+            crc2.arc(50, 25, 40, 0, 2 * Math.PI);
+            crc2.arc(90, 20, 35, 0, 2 * Math.PI);
+            crc2.arc(130, 20, 25, 0, 2 * Math.PI);
 
             crc2.closePath();
             crc2.fill();
             crc2.restore();
         }
-        move(_timeslice: number): void {
-            console.log("move Cloud");
-        }
+       
+
     }
 }

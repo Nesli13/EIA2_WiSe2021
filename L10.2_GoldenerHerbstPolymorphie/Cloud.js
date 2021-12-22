@@ -2,8 +2,14 @@
 var L10_2_GoldenerHerbst;
 (function (L10_2_GoldenerHerbst) {
     class Cloud extends L10_2_GoldenerHerbst.Moveable {
-        constructor(_position, _velocity) {
-            super(_position, _velocity);
+        velocitiy;
+        constructor(_size, _position) {
+            super(_position);
+            if (_position)
+                this.position = _position;
+            else
+                this.position = new L10_2_GoldenerHerbst.Vector(20, 100);
+            this.velocity = new L10_2_GoldenerHerbst.Vector(100, 0);
         }
         draw() {
             L10_2_GoldenerHerbst.crc2.beginPath();
@@ -22,9 +28,6 @@ var L10_2_GoldenerHerbst;
             L10_2_GoldenerHerbst.crc2.closePath();
             L10_2_GoldenerHerbst.crc2.fill();
             L10_2_GoldenerHerbst.crc2.restore();
-        }
-        move(_timeslice) {
-            console.log("move Cloud");
         }
     }
     L10_2_GoldenerHerbst.Cloud = Cloud;

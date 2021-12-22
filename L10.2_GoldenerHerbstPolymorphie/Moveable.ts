@@ -2,21 +2,18 @@ namespace L10_2_GoldenerHerbst {
     export class Moveable {
         position: Vector;
         velocity: Vector;
+        size: number;
 
-        constructor(_position: Vector, _velocity: Vector) { //const. bekommt keinen rückgabewert
+        constructor(_position?: Vector, _velocity?: Vector) { //const. bekommt keinen rückgabewert
             console.log("Move Constructor");
-
+            //position
             if (_position)
-                this.position = _position.copy(); //neuen Vector mit den gleichen Werten
+                this.position = _position; //position, wie deklaiert
             else
-                this.position = new Vector(0, 0);
+                this.position = new Vector(0, 0); //position, wenn kein Vektor angegeben ist
 
-            if (_velocity)
-                this.velocity = _velocity.copy();
-            else
-                this.velocity = new Vector(0, 0);
-
-
+            //geschwindigkeit
+            this.velocity = new Vector(1000, 0); //Geschwindigkeit
 
         }
 

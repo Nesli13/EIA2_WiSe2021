@@ -2,9 +2,8 @@
 var L10_2_GoldenerHerbst;
 (function (L10_2_GoldenerHerbst) {
     class Leaf extends L10_2_GoldenerHerbst.Moveable {
-        size;
         constructor(_size, _position, _velocity) {
-            super(_position, _velocity);
+            super(_position);
             console.log("Leaf constructor");
             if (_position)
                 this.position = _position.copy(); //neuen Vector mit den gleichen Werten

@@ -8,6 +8,7 @@ namespace L10_2_GoldenerHerbst {
 
     let golden: number = 0.65; //Goldener-Schnitt
     function hndLoad(_event: Event): void {
+        
         canvas = document.querySelector("canvas")!;
         console.log(canvas);
 
@@ -16,6 +17,9 @@ namespace L10_2_GoldenerHerbst {
 
         let horizon: number = crc2.canvas.height * golden;
         drawBackground();
+        createClouds();
+        //window.setInterval(update, 20);
+        //createSquirrel(new Vector(500, 200));
         drawSun(new Vector(400, 65));
         drawMountains(new Vector(0, horizon), 55, 150, "grey", "white");
         createStars(new Vector(0, 300), new Vector(900, 300));
@@ -23,8 +27,13 @@ namespace L10_2_GoldenerHerbst {
         drawTree(new Vector(75, 440)); //middle triangle
         drawTree(new Vector(75, 500)); //low triangle
         drawAnotherTree(new Vector(590, 500), (new Vector(20, 500)), "#A0522D");
-        
+        drawFlower(new Vector(100, 400), "#F4DC21");
+        drawFlower(new Vector(330, 400), "pink");
+       
+       
     }
+
+   
     function drawBackground(): void {
         let gradient: CanvasGradient = crc2.createLinearGradient(0, 0, 10, 400);
         gradient.addColorStop(0, "HSLA(225, 100%, 73%, 1)");
@@ -34,6 +43,7 @@ namespace L10_2_GoldenerHerbst {
         crc2.fillStyle = gradient;
         crc2.fillRect(0, 0, 1000, 1000);
     }
+    
     function drawSun(_position: Vector): void {
         console.log("Sun", _position);
 
@@ -190,5 +200,96 @@ namespace L10_2_GoldenerHerbst {
         crc2.restore();
 
     }
-    
+    // Blume
+    function drawFlower(_position: Vector, fillColor: string): void {
+        crc2.save();
+        crc2.translate(_position.x, _position.y);
+        crc2.strokeStyle = "darkgreen";
+
+        crc2.beginPath();
+        crc2.moveTo(200, 100);
+        crc2.lineTo(200, 180);
+        crc2.closePath();
+        crc2.stroke();
+        crc2.fillStyle = "#361E12";
+
+        crc2.beginPath();
+        crc2.ellipse(200, 100, 10, 10, 0, 20, 40);
+        crc2.closePath();
+        crc2.fill();
+        crc2.stroke();
+        crc2.fillStyle = fillColor;
+
+        crc2.beginPath();
+        crc2.ellipse(200, 130, 20, 20, 0, 0, 100);
+        crc2.closePath();
+        crc2.fill();
+
+        crc2.beginPath();
+        crc2.ellipse(200, 70, 20, 20, 0, 0, 100);
+        crc2.closePath();
+        crc2.fill();
+
+        crc2.beginPath();
+        crc2.ellipse(170, 100, 20, 20, 0, 0, 100);
+        crc2.closePath();
+        crc2.fill();
+
+        crc2.beginPath();
+        crc2.ellipse(230, 100, 20, 20, 0, 0, 100);
+        crc2.closePath();
+        crc2.fill();
+
+        crc2.beginPath();
+        crc2.ellipse(175, 80, 20, 20, 0, 0, 100);
+        crc2.closePath();
+        crc2.fill();
+
+        crc2.beginPath();
+        crc2.ellipse(222, 79, 20, 20, 0, 0, 100);
+        crc2.closePath();
+        crc2.fill();
+
+        crc2.beginPath();
+        crc2.ellipse(177, 123, 20, 20, 0, 0, 100);
+        crc2.closePath();
+        crc2.fill();
+
+        crc2.beginPath();
+        crc2.ellipse(225, 122, 20, 20, 0, 0, 100);
+        crc2.closePath();
+        crc2.fill();
+
+        crc2.restore();
+
+    }
+
+
+    function createClouds(): void {
+        let cloud: Cloud = new Cloud(0.9);
+        moveables.push(cloud);
+        console.log("Clouds ");
+
+    }
+    function update(): void {
+        crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
+
+        for (let moveable of moveables) {
+            moveable.move(1 / 50);
+            moveable.draw();
+        }
+
+        console.log("Moveable length: ", moveables.length);
+
+    }
+    /*function createSquirrel(_position: Vector): void {
+        let velocitiy: Vector = new Vector(0, 0);
+        velocitiy.random(100, 200);
+        let squirrel: Moveable = new Squirrel(new Vector(500, 300));
+        moveables.push(squirrel);
+        update();
+        console.log("Squirrel ");
+
+    }*/
+
 }

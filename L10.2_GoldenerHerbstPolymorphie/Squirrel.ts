@@ -1,9 +1,15 @@
 namespace L10_2_GoldenerHerbst {
 
     export class Squirrel extends Moveable {
-        constructor(_position: Vector, _velocity: Vector) {
-            super(_position, _velocity);
+        constructor(_position: Vector) {
+            super(_position);
 
+            if (_position)
+                this.position = _position;
+            else
+                this.position = new Vector(0, 0);
+
+            this.velocity = new Vector(100, 0);
            
         }
         draw(): void {
