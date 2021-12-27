@@ -4,17 +4,15 @@ var L10_2_GoldenerHerbst;
     window.addEventListener("load", hndLoad);
     let canvas;
     let moveables = [];
+    let imgData;
     let golden = 0.65; //Goldener-Schnitt
     function hndLoad(_event) {
         canvas = document.querySelector("canvas");
-        console.log(canvas);
+        //console.log(canvas);
         L10_2_GoldenerHerbst.crc2 = canvas.getContext("2d");
-        console.log(L10_2_GoldenerHerbst.crc2);
+        //console.log(crc2);
         let horizon = L10_2_GoldenerHerbst.crc2.canvas.height * golden;
         drawBackground();
-        createClouds();
-        //window.setInterval(update, 20);
-        //createSquirrel(new Vector(500, 200));
         drawSun(new L10_2_GoldenerHerbst.Vector(400, 65));
         drawMountains(new L10_2_GoldenerHerbst.Vector(0, horizon), 55, 150, "grey", "white");
         createStars(new L10_2_GoldenerHerbst.Vector(0, 300), new L10_2_GoldenerHerbst.Vector(900, 300));
@@ -24,7 +22,36 @@ var L10_2_GoldenerHerbst;
         drawAnotherTree(new L10_2_GoldenerHerbst.Vector(590, 500), (new L10_2_GoldenerHerbst.Vector(20, 500)), "#A0522D");
         drawFlower(new L10_2_GoldenerHerbst.Vector(100, 400), "#F4DC21");
         drawFlower(new L10_2_GoldenerHerbst.Vector(330, 400), "pink");
+        imgData = L10_2_GoldenerHerbst.crc2.getImageData(0, 0, L10_2_GoldenerHerbst.crc2.canvas.width, L10_2_GoldenerHerbst.crc2.canvas.height);
+        createClouds();
+        //createSquirrel(new Vector(500, 200));
+        window.setInterval(update, 20);
     }
+    function update() {
+        //console.log("update moveables"); //wirdausgegeben
+        L10_2_GoldenerHerbst.crc2.clearRect(0, 0, L10_2_GoldenerHerbst.crc2.canvas.width, L10_2_GoldenerHerbst.crc2.canvas.height);
+        L10_2_GoldenerHerbst.crc2.putImageData(imgData, 0, 0);
+        for (let moveable of moveables) {
+            moveable.move(1 / 50);
+            moveable.draw();
+        }
+    }
+    function createClouds() {
+        for (let i = 0; i < 1; i++) {
+            let cloud = new L10_2_GoldenerHerbst.Cloud(.9);
+            moveables.push(cloud);
+            //console.log(moveables);                 
+        }
+    }
+    /*function createSquirrel(_position: Vector): void {
+        let velocitiy: Vector = new Vector(0, 0);
+        velocitiy.random(100, 200);
+        let squirrel: Moveable = new Squirrel(0.9, new Vector(500, 300));
+        moveables.push(squirrel);
+        update();
+        console.log("Squirrel "+ squirrel);
+
+    }*/
     function drawBackground() {
         let gradient = L10_2_GoldenerHerbst.crc2.createLinearGradient(0, 0, 10, 400);
         gradient.addColorStop(0, "HSLA(225, 100%, 73%, 1)");
@@ -215,27 +242,5 @@ var L10_2_GoldenerHerbst;
         L10_2_GoldenerHerbst.crc2.fill();
         L10_2_GoldenerHerbst.crc2.restore();
     }
-    function createClouds() {
-        let cloud = new L10_2_GoldenerHerbst.Cloud(0.9);
-        moveables.push(cloud);
-        console.log("Clouds ");
-    }
-    function update() {
-        L10_2_GoldenerHerbst.crc2.fillRect(0, 0, L10_2_GoldenerHerbst.crc2.canvas.width, L10_2_GoldenerHerbst.crc2.canvas.height);
-        for (let moveable of moveables) {
-            moveable.move(1 / 50);
-            moveable.draw();
-        }
-        console.log("Moveable length: ", moveables.length);
-    }
-    /*function createSquirrel(_position: Vector): void {
-        let velocitiy: Vector = new Vector(0, 0);
-        velocitiy.random(100, 200);
-        let squirrel: Moveable = new Squirrel(new Vector(500, 300));
-        moveables.push(squirrel);
-        update();
-        console.log("Squirrel ");
-
-    }*/
 })(L10_2_GoldenerHerbst || (L10_2_GoldenerHerbst = {}));
 //# sourceMappingURL=Main.js.map

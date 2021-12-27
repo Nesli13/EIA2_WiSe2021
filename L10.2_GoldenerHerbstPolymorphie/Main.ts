@@ -1,25 +1,23 @@
 namespace L10_2_GoldenerHerbst {
-    window.addEventListener("load", hndLoad);
 
+    window.addEventListener("load", hndLoad);
 
     export let crc2: CanvasRenderingContext2D;
     let canvas: HTMLCanvasElement | null;
     let moveables: Moveable[] = [];
-
+    let imgData: ImageData;
     let golden: number = 0.65; //Goldener-Schnitt
+    
     function hndLoad(_event: Event): void {
-        
+
         canvas = document.querySelector("canvas")!;
-        console.log(canvas);
+        //console.log(canvas);
 
         crc2 = canvas.getContext("2d")!;
-        console.log(crc2);
+        //console.log(crc2);
 
         let horizon: number = crc2.canvas.height * golden;
         drawBackground();
-        createClouds();
-        //window.setInterval(update, 20);
-        //createSquirrel(new Vector(500, 200));
         drawSun(new Vector(400, 65));
         drawMountains(new Vector(0, horizon), 55, 150, "grey", "white");
         createStars(new Vector(0, 300), new Vector(900, 300));
@@ -29,11 +27,44 @@ namespace L10_2_GoldenerHerbst {
         drawAnotherTree(new Vector(590, 500), (new Vector(20, 500)), "#A0522D");
         drawFlower(new Vector(100, 400), "#F4DC21");
         drawFlower(new Vector(330, 400), "pink");
-       
-       
+
+        imgData = crc2.getImageData(0, 0, crc2.canvas.width, crc2.canvas.height);
+        createClouds();
+        //createSquirrel(new Vector(500, 200));
+        window.setInterval(update, 20);
     }
 
-   
+    function update(): void {
+        //console.log("update moveables"); //wirdausgegeben
+        crc2.clearRect(0, 0, crc2.canvas.width, crc2.canvas.height);
+        crc2.putImageData(imgData, 0, 0);
+
+        for (let moveable of moveables) {
+            moveable.move(1 / 50);
+            moveable.draw();
+        }
+
+    }
+    function createClouds(): void {
+        for (let i: number = 0; i < 1; i++) {
+            let cloud: Cloud = new Cloud(.9);
+            moveables.push(cloud);
+            //console.log(moveables);                 
+        }
+        
+        
+
+    }
+    /*function createSquirrel(_position: Vector): void {
+        let velocitiy: Vector = new Vector(0, 0);
+        velocitiy.random(100, 200);
+        let squirrel: Moveable = new Squirrel(0.9, new Vector(500, 300));
+        moveables.push(squirrel);
+        update();
+        console.log("Squirrel "+ squirrel);
+
+    }*/
+
     function drawBackground(): void {
         let gradient: CanvasGradient = crc2.createLinearGradient(0, 0, 10, 400);
         gradient.addColorStop(0, "HSLA(225, 100%, 73%, 1)");
@@ -43,7 +74,7 @@ namespace L10_2_GoldenerHerbst {
         crc2.fillStyle = gradient;
         crc2.fillRect(0, 0, 1000, 1000);
     }
-    
+
     function drawSun(_position: Vector): void {
         console.log("Sun", _position);
 
@@ -62,6 +93,7 @@ namespace L10_2_GoldenerHerbst {
         crc2.fill();
         crc2.restore();
     }
+
     function drawMountains(_position: Vector, _min: number, _max: number, _colorLow: string, _colorHigh: string): void {
         console.log("Mountains");
         let stepMin: number = 45;
@@ -103,6 +135,7 @@ namespace L10_2_GoldenerHerbst {
         crc2.fill();
         crc2.restore();
     }
+
     function createStars(_position: Vector, _size: Vector): void {
         console.log("Stars", _position, _size);
 
@@ -152,6 +185,7 @@ namespace L10_2_GoldenerHerbst {
         crc2.fill();
 
     }
+
     function drawAnotherTree(_position: Vector, _size: Vector, _fillColor: string): void {
 
         //Baum1 hellgrün
@@ -176,8 +210,8 @@ namespace L10_2_GoldenerHerbst {
         crc2.closePath();
         crc2.fill();
         crc2.restore();
-        //Baum2 orange
 
+        //Baum2 orange
         crc2.beginPath();
         crc2.save();
         crc2.fillStyle = "#800000";
@@ -263,33 +297,5 @@ namespace L10_2_GoldenerHerbst {
         crc2.restore();
 
     }
-
-
-    function createClouds(): void {
-        let cloud: Cloud = new Cloud(0.9);
-        moveables.push(cloud);
-        console.log("Clouds ");
-
-    }
-    function update(): void {
-        crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
-
-        for (let moveable of moveables) {
-            moveable.move(1 / 50);
-            moveable.draw();
-        }
-
-        console.log("Moveable length: ", moveables.length);
-
-    }
-    /*function createSquirrel(_position: Vector): void {
-        let velocitiy: Vector = new Vector(0, 0);
-        velocitiy.random(100, 200);
-        let squirrel: Moveable = new Squirrel(new Vector(500, 300));
-        moveables.push(squirrel);
-        update();
-        console.log("Squirrel ");
-
-    }*/
 
 }

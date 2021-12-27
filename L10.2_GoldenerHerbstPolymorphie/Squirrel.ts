@@ -1,8 +1,8 @@
 namespace L10_2_GoldenerHerbst {
 
     export class Squirrel extends Moveable {
-        constructor(_position: Vector) {
-            super(_position);
+        constructor(_size: number, _position: Vector) {
+            super(_size,_position);
 
             if (_position)
                 this.position = _position;
@@ -13,7 +13,7 @@ namespace L10_2_GoldenerHerbst {
            
         }
         draw(): void {
-            console.log("Create Squirrel");
+            //console.log("Create Squirrel");
 
             //body
             crc2.beginPath();

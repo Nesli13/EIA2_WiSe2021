@@ -2,8 +2,8 @@
 var L10_2_GoldenerHerbst;
 (function (L10_2_GoldenerHerbst) {
     class Squirrel extends L10_2_GoldenerHerbst.Moveable {
-        constructor(_position) {
-            super(_position);
+        constructor(_size, _position) {
+            super(_size, _position);
             if (_position)
                 this.position = _position;
             else
@@ -11,7 +11,7 @@ var L10_2_GoldenerHerbst;
             this.velocity = new L10_2_GoldenerHerbst.Vector(100, 0);
         }
         draw() {
-            console.log("Create Squirrel");
+            //console.log("Create Squirrel");
             //body
             L10_2_GoldenerHerbst.crc2.beginPath();
             L10_2_GoldenerHerbst.crc2.save();

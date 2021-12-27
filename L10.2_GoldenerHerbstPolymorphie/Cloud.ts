@@ -2,21 +2,21 @@ namespace L10_2_GoldenerHerbst {
 
     export class Cloud extends Moveable {
 
-        velocitiy: Vector;
-       
+
 
         constructor(_size: number, _position?: Vector) {
-            super(_position);
+            super(_size, _position);
 
             if (_position)
                 this.position = _position;
             else
                 this.position = new Vector(20, 100);
 
-            this.velocity = new Vector(100, 0);
+            this.velocity = new Vector(30, 0);
+            this.size = _size;
         }
         draw(): void {
-            crc2.beginPath();
+
             let radiusParticle: number = 3000;
             let particle: Path2D = new Path2D();
             let gradient: CanvasGradient = crc2.createRadialGradient(0, 0, 0, 0, 0, radiusParticle);
@@ -26,7 +26,7 @@ namespace L10_2_GoldenerHerbst {
             gradient.addColorStop(1, "HSLA(0, 0%, 100%, 0.7)");
             crc2.save();
             crc2.fillStyle = gradient;
-
+            crc2.beginPath();
             crc2.arc(10, 30, 25, 0, 2 * Math.PI);
             crc2.arc(50, 25, 40, 0, 2 * Math.PI);
             crc2.arc(90, 20, 35, 0, 2 * Math.PI);
@@ -37,6 +37,5 @@ namespace L10_2_GoldenerHerbst {
             crc2.restore();
         }
        
-
     }
 }

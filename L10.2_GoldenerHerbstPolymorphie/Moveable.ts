@@ -1,25 +1,27 @@
 namespace L10_2_GoldenerHerbst {
+
     export class Moveable {
+
         position: Vector;
         velocity: Vector;
         size: number;
 
-        constructor(_position?: Vector, _velocity?: Vector) { //const. bekommt keinen rückgabewert
-            console.log("Move Constructor");
+        constructor(_size: number, _position?: Vector) { //const. bekommt keinen rückgabewert
+            //console.log("Move Constructor");
             //position
             if (_position)
-                this.position = _position; //position, wie deklaiert
+                this.position = _position.copy(); //position, wie deklaiert
             else
                 this.position = new Vector(0, 0); //position, wenn kein Vektor angegeben ist
 
             //geschwindigkeit
-            this.velocity = new Vector(1000, 0); //Geschwindigkeit
+            this.velocity = new Vector(0, 0); //Geschwindigkeit
 
         }
 
-
         move(_timeslice: number): void {
-            console.log("Moveable move");
+            //console.log("Moveable move");
+
             let offset: Vector = this.velocity.copy();
             offset.scale(_timeslice);
             this.position.add(offset);
@@ -33,6 +35,7 @@ namespace L10_2_GoldenerHerbst {
             if (this.position.y > crc2.canvas.height)
                 this.position.y -= crc2.canvas.height;
         }
+
         draw(): void {
             console.log("Moveable move");
         }

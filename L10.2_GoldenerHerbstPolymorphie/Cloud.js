@@ -2,17 +2,16 @@
 var L10_2_GoldenerHerbst;
 (function (L10_2_GoldenerHerbst) {
     class Cloud extends L10_2_GoldenerHerbst.Moveable {
-        velocitiy;
         constructor(_size, _position) {
-            super(_position);
+            super(_size, _position);
             if (_position)
                 this.position = _position;
             else
                 this.position = new L10_2_GoldenerHerbst.Vector(20, 100);
-            this.velocity = new L10_2_GoldenerHerbst.Vector(100, 0);
+            this.velocity = new L10_2_GoldenerHerbst.Vector(30, 0);
+            this.size = _size;
         }
         draw() {
-            L10_2_GoldenerHerbst.crc2.beginPath();
             let radiusParticle = 3000;
             let particle = new Path2D();
             let gradient = L10_2_GoldenerHerbst.crc2.createRadialGradient(0, 0, 0, 0, 0, radiusParticle);
@@ -21,6 +20,7 @@ var L10_2_GoldenerHerbst;
             gradient.addColorStop(1, "HSLA(0, 0%, 100%, 0.7)");
             L10_2_GoldenerHerbst.crc2.save();
             L10_2_GoldenerHerbst.crc2.fillStyle = gradient;
+            L10_2_GoldenerHerbst.crc2.beginPath();
             L10_2_GoldenerHerbst.crc2.arc(10, 30, 25, 0, 2 * Math.PI);
             L10_2_GoldenerHerbst.crc2.arc(50, 25, 40, 0, 2 * Math.PI);
             L10_2_GoldenerHerbst.crc2.arc(90, 20, 35, 0, 2 * Math.PI);
