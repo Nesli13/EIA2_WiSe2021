@@ -9,8 +9,8 @@ namespace L10_2_GoldenerHerbst {
             else
                 this.position = new Vector(0, 0);
 
-            this.velocity = new Vector(-100, 0);
-           
+            this.velocity = new Vector(-150, 0);
+
             this.size = _size;
         }
         draw(): void {
@@ -19,7 +19,7 @@ namespace L10_2_GoldenerHerbst {
             //body
             crc2.beginPath();
             crc2.save();
-            crc2.translate(this.position.x, this.position.y);
+            crc2.translate(-170 + this.position.x, this.position.y);
             crc2.fillStyle = "#8B4513";
             crc2.arc(130, 19, 12, 0, 2 * Math.PI);
             crc2.arc(135, 18, 12, 0, 2 * Math.PI);
@@ -41,7 +41,7 @@ namespace L10_2_GoldenerHerbst {
 
             crc2.closePath();
             crc2.fill();
-           
+
 
             //ears
             crc2.beginPath();
@@ -49,10 +49,10 @@ namespace L10_2_GoldenerHerbst {
             crc2.arc(85, -50, 9, -5, 2 * Math.PI);
             crc2.closePath();
             crc2.fill();
-            
+
 
             //eyes+mouth
-            crc2.beginPath();   
+            crc2.beginPath();
             crc2.fillStyle = "black";
             crc2.arc(76, -29, 4, -5, 2 * Math.PI);
             crc2.arc(73, -12, 1, -5, 2 * Math.PI);
@@ -63,6 +63,6 @@ namespace L10_2_GoldenerHerbst {
             crc2.restore();
 
         }
-       
+
     }
 }

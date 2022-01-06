@@ -8,7 +8,7 @@ var L10_2_GoldenerHerbst;
                 this.position = _position;
             else
                 this.position = new L10_2_GoldenerHerbst.Vector(0, 0);
-            this.velocity = new L10_2_GoldenerHerbst.Vector(-100, 0);
+            this.velocity = new L10_2_GoldenerHerbst.Vector(-150, 0);
             this.size = _size;
         }
         draw() {
@@ -16,7 +16,7 @@ var L10_2_GoldenerHerbst;
             //body
             L10_2_GoldenerHerbst.crc2.beginPath();
             L10_2_GoldenerHerbst.crc2.save();
-            L10_2_GoldenerHerbst.crc2.translate(this.position.x, this.position.y);
+            L10_2_GoldenerHerbst.crc2.translate(-170 + this.position.x, this.position.y);
             L10_2_GoldenerHerbst.crc2.fillStyle = "#8B4513";
             L10_2_GoldenerHerbst.crc2.arc(130, 19, 12, 0, 2 * Math.PI);
             L10_2_GoldenerHerbst.crc2.arc(135, 18, 12, 0, 2 * Math.PI);
