@@ -50,7 +50,7 @@ namespace L10_2_GoldenerHerbst {
             gradient.addColorStop(0, "red");
 
             crc2.save();
-            crc2.translate(this.position.y, this.position.x);
+            crc2.translate( this.position.y, this.position.x);
             crc2.rotate(20 * Math.PI / 270);
             crc2.fillStyle = gradient;
 
@@ -67,8 +67,34 @@ namespace L10_2_GoldenerHerbst {
             }
 
             crc2.restore();
+            crc2.closePath();
 
-            
+            crc2.beginPath();
+
+            particle.arc(0, 0, radiusParticle, 0, 0.6 * Math.PI);
+            gradient.addColorStop(0, "green");
+
+            crc2.save();
+            crc2.translate(100 + this.position.x, 200 + this.position.y);
+            crc2.rotate(20 * Math.PI / 270);
+            crc2.fillStyle = gradient;
+
+            for (let drawn: number = 0; drawn < nParticles; drawn++) {
+                crc2.save();
+                crc2.translate(this.position.y, this.position.x);
+                crc2.restore();
+                let x: number = (Math.random() - 0.9) * this.size;
+                let y: number = -(Math.random() * this.size);
+
+                crc2.translate(x, y),
+                    crc2.fill(particle); //Pfad particle wurde oben erstellt
+                crc2.restore();
+            }
+
+            crc2.restore();
+
+
+
         }
 
     }

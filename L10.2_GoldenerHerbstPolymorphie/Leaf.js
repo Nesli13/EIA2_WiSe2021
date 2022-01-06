@@ -52,6 +52,25 @@ var L10_2_GoldenerHerbst;
                 L10_2_GoldenerHerbst.crc2.restore();
             }
             L10_2_GoldenerHerbst.crc2.restore();
+            L10_2_GoldenerHerbst.crc2.closePath();
+            L10_2_GoldenerHerbst.crc2.beginPath();
+            particle.arc(0, 0, radiusParticle, 0, 0.6 * Math.PI);
+            gradient.addColorStop(0, "green");
+            L10_2_GoldenerHerbst.crc2.save();
+            L10_2_GoldenerHerbst.crc2.translate(100 + this.position.x, 200 + this.position.y);
+            L10_2_GoldenerHerbst.crc2.rotate(20 * Math.PI / 270);
+            L10_2_GoldenerHerbst.crc2.fillStyle = gradient;
+            for (let drawn = 0; drawn < nParticles; drawn++) {
+                L10_2_GoldenerHerbst.crc2.save();
+                L10_2_GoldenerHerbst.crc2.translate(this.position.y, this.position.x);
+                L10_2_GoldenerHerbst.crc2.restore();
+                let x = (Math.random() - 0.9) * this.size;
+                let y = -(Math.random() * this.size);
+                L10_2_GoldenerHerbst.crc2.translate(x, y),
+                    L10_2_GoldenerHerbst.crc2.fill(particle); //Pfad particle wurde oben erstellt
+                L10_2_GoldenerHerbst.crc2.restore();
+            }
+            L10_2_GoldenerHerbst.crc2.restore();
         }
     }
     L10_2_GoldenerHerbst.Leaf = Leaf;
