@@ -6,7 +6,7 @@ namespace L10_2_GoldenerHerbst {
         velocity: Vector;
         size: number;
 
-        constructor(_size: number, _position?: Vector) { //const. bekommt keinen rückgabewert
+        constructor( _position?: Vector) { //const. bekommt keinen rückgabewert
             //console.log("Move Constructor");
             //position
             if (_position)

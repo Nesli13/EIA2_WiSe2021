@@ -7,7 +7,7 @@ namespace L10_2_GoldenerHerbst {
     let moveables: Moveable[] = [];
     let imgData: ImageData;
     let golden: number = 0.65; //Goldener-Schnitt
-    
+
     function hndLoad(_event: Event): void {
 
         canvas = document.querySelector("canvas")!;
@@ -44,15 +44,19 @@ namespace L10_2_GoldenerHerbst {
             moveable.draw();
         }
 
+        for (let moveable of moveables) {
+            moveable.move(1 / 50);
+            moveable.draw();
+        }
+
     }
     function createClouds(): void {
         for (let i: number = 0; i < 1; i++) {
             let cloud: Cloud = new Cloud(.9);
             moveables.push(cloud);
-            //console.log(moveables);                 
+            console.log(moveables);
         }
-        
-        
+
 
     }
     /*function createSquirrel(_position: Vector): void {

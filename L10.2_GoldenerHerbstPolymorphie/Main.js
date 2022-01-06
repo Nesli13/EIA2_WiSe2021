@@ -35,12 +35,16 @@ var L10_2_GoldenerHerbst;
             moveable.move(1 / 50);
             moveable.draw();
         }
+        for (let moveable of moveables) {
+            moveable.move(1 / 50);
+            moveable.draw();
+        }
     }
     function createClouds() {
         for (let i = 0; i < 1; i++) {
             let cloud = new L10_2_GoldenerHerbst.Cloud(.9);
             moveables.push(cloud);
-            //console.log(moveables);                 
+            console.log(moveables);
         }
     }
     /*function createSquirrel(_position: Vector): void {

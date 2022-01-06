@@ -3,7 +3,7 @@ var L10_2_GoldenerHerbst;
 (function (L10_2_GoldenerHerbst) {
     class Squirrel extends L10_2_GoldenerHerbst.Moveable {
         constructor(_size, _position) {
-            super(_size, _position);
+            super(_position);
             if (_position)
                 this.position = _position;
             else

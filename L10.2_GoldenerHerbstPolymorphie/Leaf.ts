@@ -4,7 +4,7 @@ namespace L10_2_GoldenerHerbst {
 
 
         constructor(_size: number, _position: Vector, _velocity: Vector) { // ?, bedeutet kann da sein muss aber nicht
-            super(_size, _position);
+            super( _position);
 
             console.log("Leaf constructor");
 

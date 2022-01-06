@@ -5,7 +5,7 @@ var L10_2_GoldenerHerbst;
         position;
         velocity;
         size;
-        constructor(_size, _position) {
+        constructor(_position) {
             //console.log("Move Constructor");
             //position
             if (_position)

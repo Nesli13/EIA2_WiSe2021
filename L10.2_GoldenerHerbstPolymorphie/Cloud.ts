@@ -2,17 +2,15 @@ namespace L10_2_GoldenerHerbst {
 
     export class Cloud extends Moveable {
 
-
-
         constructor(_size: number, _position?: Vector) {
-            super(_size, _position);
+            super( _position);
 
             if (_position)
                 this.position = _position;
             else
                 this.position = new Vector(20, 100);
 
-            this.velocity = new Vector(30, 0);
+            this.velocity = new Vector(100, 0);
             this.size = _size;
         }
         draw(): void {

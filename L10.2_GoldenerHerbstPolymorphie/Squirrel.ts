@@ -2,7 +2,7 @@ namespace L10_2_GoldenerHerbst {
 
     export class Squirrel extends Moveable {
         constructor(_size: number, _position: Vector) {
-            super(_size,_position);
+            super(_position);
 
             if (_position)
                 this.position = _position;

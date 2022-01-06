@@ -3,12 +3,12 @@ var L10_2_GoldenerHerbst;
 (function (L10_2_GoldenerHerbst) {
     class Cloud extends L10_2_GoldenerHerbst.Moveable {
         constructor(_size, _position) {
-            super(_size, _position);
+            super(_position);
             if (_position)
                 this.position = _position;
             else
                 this.position = new L10_2_GoldenerHerbst.Vector(20, 100);
-            this.velocity = new L10_2_GoldenerHerbst.Vector(30, 0);
+            this.velocity = new L10_2_GoldenerHerbst.Vector(100, 0);
             this.size = _size;
         }
         draw() {
