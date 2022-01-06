@@ -3,10 +3,8 @@ namespace L10_2_GoldenerHerbst {
     export class Leaf extends Moveable {
 
 
-        constructor(_size: number, _position: Vector, _velocity: Vector) { // ?, bedeutet kann da sein muss aber nicht
-            super( _position);
-
-            console.log("Leaf constructor");
+        constructor(_size: number, _position?: Vector) { // ?, bedeutet kann da sein muss aber nicht
+            super(_position);
 
             if (_position)
                 this.position = _position.copy(); //neuen Vector mit den gleichen Werten
@@ -16,7 +14,6 @@ namespace L10_2_GoldenerHerbst {
             this.velocity = new Vector(0, 0);
             this.velocity.random(100, 200);
 
-            this.size = _size;
         }
 
         draw(): void {
@@ -28,12 +25,13 @@ namespace L10_2_GoldenerHerbst {
             gradient.addColorStop(0, "orange");
 
             crc2.save();
-            crc2.translate(0, 0);
+            crc2.translate(this.position.x, this.position.y);
             crc2.rotate(20 * Math.PI / 270);
             crc2.fillStyle = gradient;
 
             for (let drawn: number = 0; drawn < nParticles; drawn++) {
                 crc2.save();
+                crc2.translate(this.position.x, this.position.y);
                 crc2.restore();
                 let x: number = (Math.random() - 0.9) * this.size;
                 let y: number = -(Math.random() * this.size);
@@ -44,9 +42,34 @@ namespace L10_2_GoldenerHerbst {
             }
 
             crc2.restore();
+            crc2.closePath();
+
+            crc2.beginPath();
+
+            particle.arc(0, 0, radiusParticle, 0, 0.6 * Math.PI);
+            gradient.addColorStop(0, "red");
+
+            crc2.save();
+            crc2.translate(this.position.y, this.position.x);
+            crc2.rotate(20 * Math.PI / 270);
+            crc2.fillStyle = gradient;
+
+            for (let drawn: number = 0; drawn < nParticles; drawn++) {
+                crc2.save();
+                crc2.translate(this.position.x, this.position.y);
+                crc2.restore();
+                let x: number = (Math.random() - 0.9) * this.size;
+                let y: number = -(Math.random() * this.size);
+
+                crc2.translate(x, y),
+                    crc2.fill(particle); //Pfad particle wurde oben erstellt
+                crc2.restore();
+            }
+
+            crc2.restore();
+
+            
         }
-        move(_timeslice: number): void {
-            console.log("move Leaf");
-        }
+
     }
 }

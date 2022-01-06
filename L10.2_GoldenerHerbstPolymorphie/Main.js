@@ -25,6 +25,7 @@ var L10_2_GoldenerHerbst;
         imgData = L10_2_GoldenerHerbst.crc2.getImageData(0, 0, L10_2_GoldenerHerbst.crc2.canvas.width, L10_2_GoldenerHerbst.crc2.canvas.height);
         createClouds();
         createSquirrel();
+        createLeaf();
         window.setInterval(update, 40);
     }
     function update() {
@@ -48,6 +49,13 @@ var L10_2_GoldenerHerbst;
             let squirrel = new L10_2_GoldenerHerbst.Squirrel(0.9, new L10_2_GoldenerHerbst.Vector(300, 500));
             moveables.push(squirrel);
             console.log(squirrel);
+        }
+    }
+    function createLeaf() {
+        for (let i = 0; i < 10; i++) {
+            let leaf = new L10_2_GoldenerHerbst.Leaf(0.9);
+            moveables.push(leaf);
+            console.log(leaf);
         }
     }
     function drawBackground() {

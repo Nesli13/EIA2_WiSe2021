@@ -31,6 +31,7 @@ namespace L10_2_GoldenerHerbst {
         imgData = crc2.getImageData(0, 0, crc2.canvas.width, crc2.canvas.height);
         createClouds();
         createSquirrel();
+        createLeaf();
         window.setInterval(update, 40);
     }
 
@@ -52,14 +53,24 @@ namespace L10_2_GoldenerHerbst {
             console.log(moveables);
         }
     }
-    
+
     function createSquirrel(): void {
         for (let i: number = 0; i < 1; i++) {
-        let squirrel: Squirrel = new Squirrel(0.9, new Vector(300, 500));
-        moveables.push(squirrel);
-        console.log(squirrel);
+            let squirrel: Squirrel = new Squirrel(0.9, new Vector(300, 500));
+            moveables.push(squirrel);
+            console.log(squirrel);
+
         }
 
+    }
+    function createLeaf(): void {
+        for (let i: number = 0; i < 10; i++) {
+            let leaf: Leaf = new Leaf(0.9);
+            moveables.push(leaf);
+            console.log(leaf);
+
+
+        }
     }
 
     function drawBackground(): void {
