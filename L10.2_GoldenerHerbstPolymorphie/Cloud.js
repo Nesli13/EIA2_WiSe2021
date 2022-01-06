@@ -29,6 +29,20 @@ var L10_2_GoldenerHerbst;
             L10_2_GoldenerHerbst.crc2.closePath();
             L10_2_GoldenerHerbst.crc2.fill();
             L10_2_GoldenerHerbst.crc2.restore();
+            L10_2_GoldenerHerbst.crc2.beginPath();
+            gradient.addColorStop(0, "HSLA(0, 0%, 98%, 1)");
+            gradient.addColorStop(1, "HSLA(0, 0%, 100%, 0.7)");
+            L10_2_GoldenerHerbst.crc2.save();
+            L10_2_GoldenerHerbst.crc2.translate(300 + this.position.x, 50 + this.position.y);
+            L10_2_GoldenerHerbst.crc2.fillStyle = gradient;
+            L10_2_GoldenerHerbst.crc2.beginPath();
+            L10_2_GoldenerHerbst.crc2.arc(10, 30, 25, 0, 2 * Math.PI);
+            L10_2_GoldenerHerbst.crc2.arc(50, 25, 40, 0, 2 * Math.PI);
+            L10_2_GoldenerHerbst.crc2.arc(90, 20, 35, 0, 2 * Math.PI);
+            L10_2_GoldenerHerbst.crc2.arc(130, 20, 25, 0, 2 * Math.PI);
+            L10_2_GoldenerHerbst.crc2.closePath();
+            L10_2_GoldenerHerbst.crc2.fill();
+            L10_2_GoldenerHerbst.crc2.restore();
         }
     }
     L10_2_GoldenerHerbst.Cloud = Cloud;

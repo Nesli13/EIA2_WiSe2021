@@ -26,7 +26,7 @@ var L10_2_GoldenerHerbst;
         createClouds();
         createSquirrel();
         createLeaf();
-        window.setInterval(update, 40);
+        window.setInterval(update, 50);
     }
     function update() {
         //console.log("update moveables"); //wirdausgegeben
