@@ -30,8 +30,8 @@ namespace L10_2_GoldenerHerbst {
 
         imgData = crc2.getImageData(0, 0, crc2.canvas.width, crc2.canvas.height);
         createClouds();
-        //createSquirrel(new Vector(500, 200));
-        window.setInterval(update, 20);
+        createSquirrel();
+        window.setInterval(update, 40);
     }
 
     function update(): void {
@@ -44,30 +44,23 @@ namespace L10_2_GoldenerHerbst {
             moveable.draw();
         }
 
-        for (let moveable of moveables) {
-            moveable.move(1 / 50);
-            moveable.draw();
-        }
-
     }
     function createClouds(): void {
         for (let i: number = 0; i < 1; i++) {
-            let cloud: Cloud = new Cloud(.9);
+            let cloud: Cloud = new Cloud(.4);
             moveables.push(cloud);
             console.log(moveables);
         }
-
+    }
+    
+    function createSquirrel(): void {
+        for (let i: number = 0; i < 1; i++) {
+        let squirrel: Squirrel = new Squirrel(0.9, new Vector(300, 500));
+        moveables.push(squirrel);
+        console.log(squirrel);
+        }
 
     }
-    /*function createSquirrel(_position: Vector): void {
-        let velocitiy: Vector = new Vector(0, 0);
-        velocitiy.random(100, 200);
-        let squirrel: Moveable = new Squirrel(0.9, new Vector(500, 300));
-        moveables.push(squirrel);
-        update();
-        console.log("Squirrel "+ squirrel);
-
-    }*/
 
     function drawBackground(): void {
         let gradient: CanvasGradient = crc2.createLinearGradient(0, 0, 10, 400);
