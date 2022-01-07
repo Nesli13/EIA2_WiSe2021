@@ -6,7 +6,7 @@ namespace L10_2_GoldenerHerbst {
         velocity: Vector;
         size: number;
 
-        constructor( _position?: Vector) { //const. bekommt keinen rückgabewert
+        constructor( _position: Vector) { //const. bekommt keinen rückgabewert
             //console.log("Move Constructor");
             //position
             if (_position)
@@ -16,7 +16,7 @@ namespace L10_2_GoldenerHerbst {
 
             //geschwindigkeit
             this.velocity = new Vector(0, 0); //Geschwindigkeit
-
+            
         }
 
         move(_timeslice: number): void {
