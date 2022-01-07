@@ -1,3 +1,9 @@
+/*Aufgabe: L.10.2_GoldenerHerbstPolymorphie
+Name: Neslisah Koc
+Matrikel: 270155
+Datum: 07.01.22
+Quellen: Zusammenarbeit mit Verena Rothweiler 
+*/
 namespace L10_2_GoldenerHerbst {
 
     window.addEventListener("load", hndLoad);
