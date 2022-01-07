@@ -14,12 +14,12 @@ var L10_2_GoldenerHerbst;
         let horizon = L10_2_GoldenerHerbst.crc2.canvas.height * golden;
         drawBackground();
         drawSun(new L10_2_GoldenerHerbst.Vector(400, 65));
-        drawMountains(new L10_2_GoldenerHerbst.Vector(0, horizon), 55, 150, "grey", "white");
+        drawMountain(new L10_2_GoldenerHerbst.Vector(0, horizon), 55, 150, "grey", "white");
         createStars(new L10_2_GoldenerHerbst.Vector(0, 300), new L10_2_GoldenerHerbst.Vector(900, 300));
-        drawTree(new L10_2_GoldenerHerbst.Vector(75, 380)); //high triangle
-        drawTree(new L10_2_GoldenerHerbst.Vector(75, 440)); //middle triangle
-        drawTree(new L10_2_GoldenerHerbst.Vector(75, 500)); //low triangle
-        drawAnotherTree(new L10_2_GoldenerHerbst.Vector(590, 500), (new L10_2_GoldenerHerbst.Vector(20, 500)), "#A0522D");
+        drawPineTree(new L10_2_GoldenerHerbst.Vector(75, 380)); //high triangle
+        drawPineTree(new L10_2_GoldenerHerbst.Vector(75, 440)); //middle triangle
+        drawPineTree(new L10_2_GoldenerHerbst.Vector(75, 500)); //low triangle
+        drawMapleTree(new L10_2_GoldenerHerbst.Vector(590, 500), (new L10_2_GoldenerHerbst.Vector(20, 500)), "#A0522D");
         drawFlower(new L10_2_GoldenerHerbst.Vector(100, 400), "#F4DC21");
         drawFlower(new L10_2_GoldenerHerbst.Vector(330, 400), "pink");
         imgData = L10_2_GoldenerHerbst.crc2.getImageData(0, 0, L10_2_GoldenerHerbst.crc2.canvas.width, L10_2_GoldenerHerbst.crc2.canvas.height);
@@ -30,7 +30,7 @@ var L10_2_GoldenerHerbst;
     }
     function update() {
         //console.log("update moveables"); //wirdausgegeben
-        L10_2_GoldenerHerbst.crc2.clearRect(0, 0, L10_2_GoldenerHerbst.crc2.canvas.width, L10_2_GoldenerHerbst.crc2.canvas.height);
+        L10_2_GoldenerHerbst.crc2.fillRect(0, 0, L10_2_GoldenerHerbst.crc2.canvas.width, L10_2_GoldenerHerbst.crc2.canvas.height);
         L10_2_GoldenerHerbst.crc2.putImageData(imgData, 0, 0);
         for (let moveable of moveables) {
             moveable.move(1 / 50);
@@ -39,7 +39,7 @@ var L10_2_GoldenerHerbst;
     }
     function createClouds() {
         for (let i = 0; i < 1; i++) {
-            let cloud = new L10_2_GoldenerHerbst.Cloud(.4);
+            let cloud = new L10_2_GoldenerHerbst.Cloud(.8);
             moveables.push(cloud);
             console.log(moveables);
         }
@@ -81,8 +81,8 @@ var L10_2_GoldenerHerbst;
         L10_2_GoldenerHerbst.crc2.fill();
         L10_2_GoldenerHerbst.crc2.restore();
     }
-    function drawMountains(_position, _min, _max, _colorLow, _colorHigh) {
-        console.log("Mountains");
+    function drawMountain(_position, _min, _max, _colorLow, _colorHigh) {
+        console.log("Mountain");
         let stepMin = 45;
         let stepMax = 150;
         let x = 0;
@@ -143,7 +143,7 @@ var L10_2_GoldenerHerbst;
         L10_2_GoldenerHerbst.crc2.restore();
     }
     //Baum dunkelorange
-    function drawTree(_position) {
+    function drawPineTree(_position) {
         L10_2_GoldenerHerbst.crc2.beginPath();
         L10_2_GoldenerHerbst.crc2.save();
         L10_2_GoldenerHerbst.crc2.fillStyle = "brown";
@@ -155,7 +155,7 @@ var L10_2_GoldenerHerbst;
         L10_2_GoldenerHerbst.crc2.closePath();
         L10_2_GoldenerHerbst.crc2.fill();
     }
-    function drawAnotherTree(_position, _size, _fillColor) {
+    function drawMapleTree(_position, _size, _fillColor) {
         //Baum1 hellgrün
         L10_2_GoldenerHerbst.crc2.beginPath();
         L10_2_GoldenerHerbst.crc2.save();

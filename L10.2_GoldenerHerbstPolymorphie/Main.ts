@@ -19,12 +19,12 @@ namespace L10_2_GoldenerHerbst {
         let horizon: number = crc2.canvas.height * golden;
         drawBackground();
         drawSun(new Vector(400, 65));
-        drawMountains(new Vector(0, horizon), 55, 150, "grey", "white");
+        drawMountain(new Vector(0, horizon), 55, 150, "grey", "white");
         createStars(new Vector(0, 300), new Vector(900, 300));
-        drawTree(new Vector(75, 380)); //high triangle
-        drawTree(new Vector(75, 440)); //middle triangle
-        drawTree(new Vector(75, 500)); //low triangle
-        drawAnotherTree(new Vector(590, 500), (new Vector(20, 500)), "#A0522D");
+        drawPineTree(new Vector(75, 380)); //high triangle
+        drawPineTree(new Vector(75, 440)); //middle triangle
+        drawPineTree(new Vector(75, 500)); //low triangle
+        drawMapleTree(new Vector(590, 500), (new Vector(20, 500)), "#A0522D");
         drawFlower(new Vector(100, 400), "#F4DC21");
         drawFlower(new Vector(330, 400), "pink");
 
@@ -37,18 +37,18 @@ namespace L10_2_GoldenerHerbst {
 
     function update(): void {
         //console.log("update moveables"); //wirdausgegeben
-        crc2.clearRect(0, 0, crc2.canvas.width, crc2.canvas.height);
+        crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
         crc2.putImageData(imgData, 0, 0);
 
         for (let moveable of moveables) {
             moveable.move(1 / 50);
             moveable.draw();
         }
-
+    
     }
     function createClouds(): void {
         for (let i: number = 0; i < 1; i++) {
-            let cloud: Cloud = new Cloud(.4);
+            let cloud: Cloud = new Cloud(.8);
             moveables.push(cloud);
             console.log(moveables);
         }
@@ -102,8 +102,8 @@ namespace L10_2_GoldenerHerbst {
         crc2.restore();
     }
 
-    function drawMountains(_position: Vector, _min: number, _max: number, _colorLow: string, _colorHigh: string): void {
-        console.log("Mountains");
+    function drawMountain(_position: Vector, _min: number, _max: number, _colorLow: string, _colorHigh: string): void {
+        console.log("Mountain");
         let stepMin: number = 45;
         let stepMax: number = 150;
         let x: number = 0;
@@ -179,7 +179,7 @@ namespace L10_2_GoldenerHerbst {
         crc2.restore();
     }
     //Baum dunkelorange
-    function drawTree(_position: Vector): void {
+    function drawPineTree(_position: Vector): void {
 
         crc2.beginPath();
         crc2.save();
@@ -194,7 +194,7 @@ namespace L10_2_GoldenerHerbst {
 
     }
 
-    function drawAnotherTree(_position: Vector, _size: Vector, _fillColor: string): void {
+    function drawMapleTree(_position: Vector, _size: Vector, _fillColor: string): void {
 
         //Baum1 hellgrün
         crc2.beginPath();
