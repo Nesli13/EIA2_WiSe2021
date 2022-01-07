@@ -23,7 +23,7 @@ namespace L10_2_GoldenerHerbst {
             gradient.addColorStop(0, "HSLA(0, 0%, 98%, 1)");
             gradient.addColorStop(1, "HSLA(0, 0%, 100%, 0.7)");
             crc2.save();
-            crc2.translate(-100+ this.position.x, this.position.y);
+            crc2.translate(this.position.x, this.position.y);
             crc2.fillStyle = gradient;
             crc2.beginPath();
             crc2.arc(10, 30, 25, 0, 2 * Math.PI);
@@ -40,7 +40,7 @@ namespace L10_2_GoldenerHerbst {
             gradient.addColorStop(0, "HSLA(0, 0%, 98%, 1)");
             gradient.addColorStop(1, "HSLA(0, 0%, 100%, 0.7)");
             crc2.save();
-            crc2.translate( 300 + this.position.x, 50 + this.position.y);
+            crc2.translate(300 + this.position.x, 50 + this.position.y);
             crc2.fillStyle = gradient;
             crc2.beginPath();
             crc2.arc(10, 30, 25, 0, 2 * Math.PI);
