@@ -1,4 +1,4 @@
-namespace L10_2_GoldenerHerbst {
+ namespace L10_2_GoldenerHerbst {
 
     export class Cloud extends Moveable {
 
