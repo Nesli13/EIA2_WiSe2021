@@ -3,16 +3,16 @@ var L09_Asteroids;
 (function (L09_Asteroids) {
     class Moveable {
         position;
-        velocitiy;
+        velocity;
         expendable = false;
         hitRadius = 0;
         constructor(_position) {
-            //console.log("Moveable constructor");
+            // console.log("Moveable constructor");
             if (_position)
-                this.position = _position.copy(); //neuen Vector mit den gleichen Werten
+                this.position = _position.copy();
             else
                 this.position = new L09_Asteroids.Vector(0, 0);
-            this.velocitiy = new L09_Asteroids.Vector(0, 0);
+            this.velocity = new L09_Asteroids.Vector(0, 0);
         }
         isHitBy(_partner) {
             let difference = L09_Asteroids.Vector.getDifference(this.position, _partner.position);
@@ -25,8 +25,8 @@ var L09_Asteroids;
             this.expendable = true;
         }
         move(_timeslice) {
-            //console.log("Moveable move");
-            let offset = this.velocitiy.copy();
+            // console.log("Moveable move");
+            let offset = this.velocity.copy();
             offset.scale(_timeslice);
             this.position.add(offset);
             if (this.position.x < 0)

@@ -1,6 +1,11 @@
 "use strict";
 var L09_Asteroids;
 (function (L09_Asteroids) {
+    let ASTEROID_EVENT;
+    (function (ASTEROID_EVENT) {
+        ASTEROID_EVENT["UFO_SHOOTS"] = "ufoShoots";
+        ASTEROID_EVENT["ASTEROID_HIT"] = "asteroidHit";
+    })(ASTEROID_EVENT = L09_Asteroids.ASTEROID_EVENT || (L09_Asteroids.ASTEROID_EVENT = {}));
     window.addEventListener("load", handleLoad);
     L09_Asteroids.linewidth = 2;
     let moveables = [];
@@ -15,19 +20,24 @@ var L09_Asteroids;
         L09_Asteroids.crc2.lineWidth = L09_Asteroids.linewidth;
         L09_Asteroids.createPaths();
         console.log("Asteroids paths: ", L09_Asteroids.asteroidPaths);
-        createAstroids(5);
-        //createShip();
+        createAsteroids(5);
+        // createShip();
         createUfo();
-        canvas.addEventListener("ufoShoots", handleUfoShot);
+        createUfo();
+        createUfo();
+        canvas.addEventListener(ASTEROID_EVENT.UFO_SHOOTS, handleUfoShot);
+        canvas.addEventListener(ASTEROID_EVENT.ASTEROID_HIT, breakAsteroid);
         canvas.addEventListener("mouseup", shootLaser);
-        //canvas.addEventListener("keypress", handleKeypress);
-        //canvas.addEventListener("mousemove", setHeading);
+        // canvas.addEventListener("keypress", handleKeypress);
+        // canvas.addEventListener("mousemove", setHeading);
         window.setInterval(update, 20);
     }
     function shootProjectile(_origin) {
-        console.log("Shoot Projectile");
-        let velocity = L09_Asteroids.Vector.getRandom(100, 100);
+        console.log("Shoot projectile");
+        let velocity = L09_Asteroids.Vector.getRandom(200, 200);
         let projectile = new L09_Asteroids.Projectile(_origin, velocity);
+        // move projectile away from ufo to prevent suicide
+        projectile.move(0.15);
         moveables.push(projectile);
     }
     function handleUfoShot(_event) {
@@ -36,30 +46,22 @@ var L09_Asteroids;
     }
     function shootLaser(_event) {
         console.log("Shoot laser");
-        let hotspot = new L09_Asteroids.Vector(_event.clientX - L09_Asteroids.crc2.canvas.offsetLeft, _event.clientY - L09_Asteroids.crc2.canvas.offsetTop);
-        let asteroidHit = getAsteroidHit(hotspot);
-        console.log(asteroidHit);
-        if (asteroidHit)
-            breakAsteroid(asteroidHit);
+        let position = new L09_Asteroids.Vector(_event.clientX - L09_Asteroids.crc2.canvas.offsetLeft, _event.clientY - L09_Asteroids.crc2.canvas.offsetTop);
+        let hotspot = new L09_Asteroids.Hotspot(position);
+        moveables.push(hotspot);
     }
-    function getAsteroidHit(_hotspot) {
-        for (let moveable of moveables) {
-            if (moveable instanceof L09_Asteroids.Asteroid && moveable.isHit(_hotspot))
-                return moveable;
-        }
-        return null;
-    }
-    function breakAsteroid(_asteroid) {
-        if (_asteroid.size > 0.3) {
+    function breakAsteroid(_event) {
+        let asteroid = _event.detail.asteroid;
+        if (asteroid.size > 0.3) {
             for (let i = 0; i < 2; i++) {
-                let fragment = new L09_Asteroids.Asteroid(_asteroid.size / 2, _asteroid.position);
-                fragment.velocitiy.add(_asteroid.velocitiy);
+                let fragment = new L09_Asteroids.Asteroid(asteroid.size / 2, asteroid.position);
+                fragment.velocity.add(asteroid.velocity);
                 moveables.push(fragment);
             }
         }
-        _asteroid.expendable = true;
+        asteroid.expendable = true;
     }
-    function createAstroids(_nAsteroids) {
+    function createAsteroids(_nAsteroids) {
         console.log("Create asteroids");
         for (let i = 0; i < _nAsteroids; i++) {
             let asteroid = new L09_Asteroids.Asteroid(1.0);
@@ -72,19 +74,14 @@ var L09_Asteroids;
         moveables.push(ufo);
     }
     function update() {
-        //console.log("Update");
+        // console.log("Update");
         L09_Asteroids.crc2.fillRect(0, 0, L09_Asteroids.crc2.canvas.width, L09_Asteroids.crc2.canvas.height);
         for (let moveable of moveables) {
             moveable.move(1 / 50);
             moveable.draw();
         }
-        for (let moveable of moveables) { //Wenn aus dem Array ein Objekt gelöscht wird rutscht Array zsm.
-            //, wenn aber das gelöschte Objekt ein expendable war existiert es immernoch, daher eine neue for-schleife
-            moveable.move(1 / 50);
-            moveable.draw();
-        }
         deleteExpandables();
-        //ship.draw();
+        // ship.draw();
         handleCollisions();
         console.log("Moveable length: ", moveables.length);
     }
@@ -95,15 +92,20 @@ var L09_Asteroids;
         }
     }
     function handleCollisions() {
-        for (let i = 0; i < moveables.length; i++)
+        for (let i = 0; i < moveables.length; i++) {
+            let a = moveables[i];
             for (let j = i + 1; j < moveables.length; j++) {
-                let a = moveables[i];
                 let b = moveables[j];
+                if (a instanceof L09_Asteroids.Asteroid && b instanceof L09_Asteroids.Asteroid)
+                    continue;
+                if (a.expendable || b.expendable)
+                    continue;
                 if (a.isHitBy(b)) {
                     a.hit();
                     b.hit();
                 }
             }
+        }
     }
 })(L09_Asteroids || (L09_Asteroids = {}));
 //# sourceMappingURL=Main.js.map
