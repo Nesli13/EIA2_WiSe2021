@@ -23,7 +23,7 @@ namespace L09_Asteroids {
 
     export function createPaths(): void {
         asteroidPaths = createAsteroidPaths(shapesAsteroids);
-        //ufoPath = createUfoPath();
+        ufoPath = createUfoPath();
     }
 
     function createAsteroidPaths(_shapes: number[][][]): Path2D[] {
@@ -46,9 +46,11 @@ namespace L09_Asteroids {
         }
         return paths;
     }
-    /*function createUfoPath(): Path2D {
+    function createUfoPath(): Path2D {
         let path: Path2D = new Path2D();
         path.moveTo(20, 13);
         path.lineTo(13, 19);
-    }*/
+        return path;
+        
+    }
 }

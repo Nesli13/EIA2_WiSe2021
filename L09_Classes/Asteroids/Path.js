@@ -17,7 +17,7 @@ var L09_Asteroids;
     ];
     function createPaths() {
         L09_Asteroids.asteroidPaths = createAsteroidPaths(L09_Asteroids.shapesAsteroids);
-        //ufoPath = createUfoPath();
+        L09_Asteroids.ufoPath = createUfoPath();
     }
     L09_Asteroids.createPaths = createPaths;
     function createAsteroidPaths(_shapes) {
@@ -40,10 +40,11 @@ var L09_Asteroids;
         }
         return paths;
     }
-    /*function createUfoPath(): Path2D {
-        let path: Path2D = new Path2D();
+    function createUfoPath() {
+        let path = new Path2D();
         path.moveTo(20, 13);
         path.lineTo(13, 19);
-    }*/
+        return path;
+    }
 })(L09_Asteroids || (L09_Asteroids = {}));
 //# sourceMappingURL=Path.js.map
