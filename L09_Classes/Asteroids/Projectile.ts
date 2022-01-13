@@ -13,7 +13,7 @@ namespace L09_Asteroids {
             //console.log("Asteroid draw");
             crc2.save();
             crc2.translate(this.position.x, this.position.y);
-            crc2.strokeRect(-1, -1, 1, 1);
+            crc2.strokeRect(-2, -2, 2, 2);
             crc2.restore();
 
         }

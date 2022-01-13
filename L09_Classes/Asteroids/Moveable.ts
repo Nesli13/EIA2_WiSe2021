@@ -1,8 +1,9 @@
 namespace L09_Asteroids {
-    export class Moveable {
-        position: Vector;
-        velocitiy: Vector;
-        expendable: boolean = false;
+    export abstract class Moveable {
+        public position: Vector;
+        public velocitiy: Vector;
+        public expendable: boolean = false;
+        protected hitRadius: number = 0;
 
         constructor(_position?: Vector) { // ?, bedeutet kann da sein muss aber nicht
             //console.log("Moveable constructor");
@@ -16,7 +17,20 @@ namespace L09_Asteroids {
 
 
         }
-        move(_timeslice: number): void {
+        public isHitBy(_partner: Moveable): boolean {
+            let difference: Vector = Vector.getDifference(this.position, _partner.position);
+            if (this.hitRadius + _partner.hitRadius < difference.length)
+                return false;
+
+            return true;
+
+        }
+        public hit(): void {
+            console.log("Hit", this);
+            this.expendable = true;
+        }
+
+        public move(_timeslice: number): void {
             //console.log("Moveable move");
             let offset: Vector = this.velocitiy.copy();
             offset.scale(_timeslice);
@@ -31,8 +45,6 @@ namespace L09_Asteroids {
             if (this.position.y > crc2.canvas.height)
                 this.position.y -= crc2.canvas.height;
         }
-        draw(): void {
-            //console.log("Moveable move");
-        }
+        public abstract draw(): void;
     }
 }

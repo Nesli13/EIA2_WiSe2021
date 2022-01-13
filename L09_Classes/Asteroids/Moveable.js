@@ -5,6 +5,7 @@ var L09_Asteroids;
         position;
         velocitiy;
         expendable = false;
+        hitRadius = 0;
         constructor(_position) {
             //console.log("Moveable constructor");
             if (_position)
@@ -12,6 +13,16 @@ var L09_Asteroids;
             else
                 this.position = new L09_Asteroids.Vector(0, 0);
             this.velocitiy = new L09_Asteroids.Vector(0, 0);
+        }
+        isHitBy(_partner) {
+            let difference = L09_Asteroids.Vector.getDifference(this.position, _partner.position);
+            if (this.hitRadius + _partner.hitRadius < difference.length)
+                return false;
+            return true;
+        }
+        hit() {
+            console.log("Hit", this);
+            this.expendable = true;
         }
         move(_timeslice) {
             //console.log("Moveable move");
@@ -26,9 +37,6 @@ var L09_Asteroids;
                 this.position.x -= L09_Asteroids.crc2.canvas.width;
             if (this.position.y > L09_Asteroids.crc2.canvas.height)
                 this.position.y -= L09_Asteroids.crc2.canvas.height;
-        }
-        draw() {
-            //console.log("Moveable move");
         }
     }
     L09_Asteroids.Moveable = Moveable;

@@ -20,21 +20,25 @@ namespace L09_Asteroids {
 
         createAstroids(5);
         //createShip();
-        canvas.addEventListener("mousedown", shootProjectile);
+        createUfo();
+
+        canvas.addEventListener("ufoShoots", handleUfoShot);
         canvas.addEventListener("mouseup", shootLaser);
         //canvas.addEventListener("keypress", handleKeypress);
         //canvas.addEventListener("mousemove", setHeading);
 
         window.setInterval(update, 20);
     }
-    function shootProjectile(_event: MouseEvent): void {
-        console.log("Shoot laser");
-        let origin: Vector = new Vector(_event.clientX - crc2.canvas.offsetLeft, _event.clientY - crc2.canvas.offsetTop);
-        let velocity: Vector = new Vector(0, 0);
-        velocity.random(100, 100);
-        let projectile: Projectile = new Projectile(origin, velocity);
+    function shootProjectile(_origin: Vector): void {
+        console.log("Shoot Projectile");
+        let velocity: Vector = Vector.getRandom(100, 100);
+        let projectile: Projectile = new Projectile(_origin, velocity);
         moveables.push(projectile);
 
+    }
+    function handleUfoShot(_event: Event): void {
+        let ufo: Ufo = (<CustomEvent>_event).detail.ufo;
+        shootProjectile(ufo.position);
     }
     function shootLaser(_event: MouseEvent): void {
         console.log("Shoot laser");
@@ -71,6 +75,12 @@ namespace L09_Asteroids {
 
         }
     }
+    function createUfo(): void {
+        console.log("Create ufo");
+        let ufo: Ufo = new Ufo();
+        moveables.push(ufo);
+
+    }
     function update(): void {
         //console.log("Update");
         crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
@@ -87,7 +97,7 @@ namespace L09_Asteroids {
         deleteExpandables();
 
         //ship.draw();
-        //handleCollisions();
+        handleCollisions();
         console.log("Moveable length: ", moveables.length);
     }
     function deleteExpandables(): void {
@@ -95,5 +105,17 @@ namespace L09_Asteroids {
             if (moveables[i].expendable)
                 moveables.splice(i, 1);
         }
+    }
+    function handleCollisions(): void {
+        for (let i: number = 0; i < moveables.length; i++)
+            for (let j: number = i + 1; j < moveables.length; j++) {
+                let a: Moveable = moveables[i];
+                let b: Moveable = moveables[j];
+                if (a.isHitBy(b)){
+                    a.hit();
+                    b.hit();
+                }
+        }
+
     }
 }
