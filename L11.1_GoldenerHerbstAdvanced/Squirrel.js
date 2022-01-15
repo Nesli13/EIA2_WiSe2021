@@ -55,9 +55,6 @@ var L11_1_GoldenerHerbst;
             L11_1_GoldenerHerbst.crc2.fill();
             L11_1_GoldenerHerbst.crc2.restore();
         }
-        goEat() {
-            console.log("Eat");
-        }
     }
     L11_1_GoldenerHerbst.Squirrel = Squirrel;
 })(L11_1_GoldenerHerbst || (L11_1_GoldenerHerbst = {}));

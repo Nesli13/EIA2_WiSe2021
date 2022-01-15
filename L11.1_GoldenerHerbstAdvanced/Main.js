@@ -1,8 +1,7 @@
 "use strict";
-/*Aufgabe: L.10.2_GoldenerHerbstPolymorphie
+/*Aufgabe: L.11.1_GoldenerHerbstAdvanced
 Name: Neslisah Koc
 Matrikel: 270155
-Datum: 07.01.22
 Quellen: Zusammenarbeit mit Verena Rothweiler
 */
 var L11_1_GoldenerHerbst;
@@ -10,6 +9,7 @@ var L11_1_GoldenerHerbst;
     window.addEventListener("load", hndLoad);
     let canvas;
     let moveables = [];
+    L11_1_GoldenerHerbst.nutPosition = [];
     let imgData;
     let golden = 0.65; //Goldener-Schnitt
     function hndLoad(_event) {
@@ -17,6 +17,7 @@ var L11_1_GoldenerHerbst;
         //console.log(canvas);
         L11_1_GoldenerHerbst.crc2 = canvas.getContext("2d");
         //console.log(crc2);
+        canvas.addEventListener("click", createNut);
         let horizon = L11_1_GoldenerHerbst.crc2.canvas.height * golden;
         drawBackground();
         drawSun(new L11_1_GoldenerHerbst.Vector(400, 65));
@@ -42,6 +43,16 @@ var L11_1_GoldenerHerbst;
             moveable.move(1 / 50);
             moveable.draw();
         }
+    }
+    //Inspiriert von Eyüp Öcal
+    function createNut(_event) {
+        console.log(_event);
+        // tslint:disable-next-line: typedef
+        let nut = new L11_1_GoldenerHerbst.Nut(new L11_1_GoldenerHerbst.Vector(_event.clientX, _event.clientY));
+        moveables.push(nut);
+        let nutSpot = new L11_1_GoldenerHerbst.Vector(_event.clientX, _event.clientY);
+        L11_1_GoldenerHerbst.nutPosition.push(nutSpot);
+        console.log(L11_1_GoldenerHerbst.nutPosition);
     }
     function createClouds() {
         for (let i = 0; i < 1; i++) {

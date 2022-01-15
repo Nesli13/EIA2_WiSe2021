@@ -63,9 +63,9 @@ namespace L11_1_GoldenerHerbst {
             crc2.restore();
 
         }
-        private goEat(): void {
+        /*private goEat(): void {
             console.log("Eat");
-        }
+        }*/
 
     }
 }

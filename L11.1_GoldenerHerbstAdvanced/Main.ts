@@ -1,7 +1,6 @@
-/*Aufgabe: L.10.2_GoldenerHerbstPolymorphie
+/*Aufgabe: L.11.1_GoldenerHerbstAdvanced
 Name: Neslisah Koc
 Matrikel: 270155
-Datum: 07.01.22
 Quellen: Zusammenarbeit mit Verena Rothweiler 
 */
 namespace L11_1_GoldenerHerbst {
@@ -11,6 +10,8 @@ namespace L11_1_GoldenerHerbst {
     export let crc2: CanvasRenderingContext2D;
     let canvas: HTMLCanvasElement | null;
     let moveables: Moveable[] = [];
+    export let nutPosition: Vector[] = [];
+
     let imgData: ImageData;
     let golden: number = 0.65; //Goldener-Schnitt
 
@@ -21,6 +22,8 @@ namespace L11_1_GoldenerHerbst {
 
         crc2 = canvas.getContext("2d")!;
         //console.log(crc2);
+
+        canvas.addEventListener("click", createNut);
 
         let horizon: number = crc2.canvas.height * golden;
         drawBackground();
@@ -33,11 +36,12 @@ namespace L11_1_GoldenerHerbst {
         drawMapleTree(new Vector(590, 500), (new Vector(20, 500)), "#A0522D");
         drawFlower(new Vector(100, 400), "#F4DC21");
         drawFlower(new Vector(330, 400), "pink");
-
+        
         imgData = crc2.getImageData(0, 0, crc2.canvas.width, crc2.canvas.height);
         createClouds();
         createSquirrel();
         createLeaf();
+        
         window.setInterval(update, 50);
     }
 
@@ -50,7 +54,18 @@ namespace L11_1_GoldenerHerbst {
             moveable.move(1 / 50);
             moveable.draw();
         }
-    
+
+    } 
+    //Inspiriert von Eyüp Öcal
+    function createNut(_event: MouseEvent): void {
+        console.log(_event);
+        // tslint:disable-next-line: typedef
+        let nut = new Nut(new Vector (_event.clientX, _event.clientY));
+        moveables.push(nut);
+        let nutSpot: Vector = new Vector(_event.clientX, _event.clientY);
+        nutPosition.push(nutSpot);
+        console.log(nutPosition); 
+
     }
     function createClouds(): void {
         for (let i: number = 0; i < 1; i++) {
