@@ -14,7 +14,7 @@ var RandomPoem;
         let wert1 = Math.floor(Math.random() * subjekte.length);
         let wert2 = Math.floor(Math.random() * praedikate.length);
         let wert3 = Math.floor(Math.random() * objekte.length);
-        let werte = subjekte[wert1] + "  " + praedikate[wert2] + "  " + objekte[wert3];
+        let werte = "Ich möchte " + subjekte[wert1] + "  " + praedikate[wert2] + "  " + objekte[wert3];
         subjekte.splice(wert1, 1);
         praedikate.splice(wert2, 1);
         objekte.splice(wert3, 1);
