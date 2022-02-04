@@ -44,6 +44,28 @@ var L11_1_GoldenerHerbst;
             moveable.draw();
         }
     }
+    function startTimer(duration, display) {
+        // tslint:disable-next-line: typedef
+        let timer = duration, minutes, seconds;
+        setInterval(function () {
+            minutes = parseInt(String(timer / 60));
+            seconds = parseInt(String(timer % 60));
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+            display.textContent = minutes + ":" + seconds;
+            if (--timer < 0) {
+                timer = duration;
+            }
+            if (timer == 0) {
+                let body = document.querySelector("body");
+                body.removeChild(canvas);
+            }
+        }, 1000);
+    }
+    window.onload = function () {
+        let fiveMinutes = 10 * 1, display = document.querySelector("#time");
+        startTimer(fiveMinutes, display);
+    };
     //Inspiriert von Eyüp Öcal
     function createNut(_event) {
         console.log(_event);

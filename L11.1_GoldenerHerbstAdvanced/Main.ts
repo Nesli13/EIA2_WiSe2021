@@ -36,13 +36,14 @@ namespace L11_1_GoldenerHerbst {
         drawMapleTree(new Vector(590, 500), (new Vector(20, 500)), "#A0522D");
         drawFlower(new Vector(100, 400), "#F4DC21");
         drawFlower(new Vector(330, 400), "pink");
-        
+
         imgData = crc2.getImageData(0, 0, crc2.canvas.width, crc2.canvas.height);
         createClouds();
         createSquirrel();
         createLeaf();
-        
+
         window.setInterval(update, 50);
+
     }
 
     function update(): void {
@@ -55,16 +56,49 @@ namespace L11_1_GoldenerHerbst {
             moveable.draw();
         }
 
-    } 
+    }
+    function startTimer(duration: number, display: Element): void {
+        // tslint:disable-next-line: typedef
+        let timer: number = duration, minutes, seconds;
+        setInterval(
+            function (): void {
+                minutes = parseInt(String(timer / 60));
+                seconds = parseInt(String(timer % 60));
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    timer = duration;
+                }
+                if (timer == 0) {
+                    let body: HTMLBodyElement = <HTMLBodyElement>document.querySelector("body");
+                    body.removeChild(canvas);
+
+                }
+
+            }, 1000);
+    }
+   
+    window.onload = function (): void {
+        let fiveMinutes: number = 10 * 1,
+            display: Element = document.querySelector("#time");
+
+        startTimer(fiveMinutes, display);
+
+    };
+
     //Inspiriert von Eyüp Öcal
     function createNut(_event: MouseEvent): void {
         console.log(_event);
         // tslint:disable-next-line: typedef
-        let nut = new Nut(new Vector (_event.clientX, _event.clientY));
+        let nut = new Nut(new Vector(_event.clientX, _event.clientY));
         moveables.push(nut);
         let nutSpot: Vector = new Vector(_event.clientX, _event.clientY);
         nutPosition.push(nutSpot);
-        console.log(nutPosition); 
+        console.log(nutPosition);
 
     }
     function createClouds(): void {
