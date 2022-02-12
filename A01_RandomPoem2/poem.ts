@@ -16,7 +16,7 @@
       //console.log(result);
     }
     console.log(results);
-
+    console.log(subjekte.length);
 
     function getVerse(subjekte: string[], praedikate: string[], objekte: string[]): string {
         let wert1: number = Math.floor(Math.random() * subjekte.length);
@@ -28,4 +28,5 @@
         objekte.splice(wert3,  1);
         return werte;  
     }
+    
 }

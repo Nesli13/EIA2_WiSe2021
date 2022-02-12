@@ -12,6 +12,7 @@ var RandomPoem2;
         //console.log(result);
     }
     console.log(results);
+    console.log(subjekte.length);
     function getVerse(subjekte, praedikate, objekte) {
         let wert1 = Math.floor(Math.random() * subjekte.length);
         let wert2 = Math.floor(Math.random() * praedikate.length);
